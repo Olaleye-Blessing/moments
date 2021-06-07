@@ -1,6 +1,8 @@
+import getBaseUrl from "./../utilities/getBaseUrl";
+
 export const fetchPosts = async (signal) => {
     try {
-        let req = await fetch(`/moments`, { signal });
+        let req = await fetch(`${getBaseUrl()}/moments`, { signal });
         let res = await req.json();
         if (!(req.status >= 200 && req.status <= 299)) throw res;
         return res;
@@ -12,7 +14,7 @@ export const fetchPosts = async (signal) => {
 
 export const createPost = async (moment) => {
     try {
-        let req = await fetch(`/moments`, {
+        let req = await fetch(`${getBaseUrl()}/moments`, {
             method: "POST",
             body: JSON.stringify(moment),
             headers: {
@@ -31,7 +33,7 @@ export const updatePost = async (id, moment) => {
     let body = { _id: id, ...moment };
 
     try {
-        let req = await fetch(`/moments/${id}`, {
+        let req = await fetch(`${getBaseUrl()}/moments/${id}`, {
             method: "PATCH",
             body: JSON.stringify(body),
             headers: {
@@ -51,7 +53,7 @@ export const deletePost = async (id) => {
 
     console.log("got here");
     try {
-        await fetch(`/moments/${id}`, {
+        await fetch(`${getBaseUrl()}/moments/${id}`, {
             method: "DELETE",
             // body: JSON.stringify(body),
             // headers: {

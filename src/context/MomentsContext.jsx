@@ -15,9 +15,20 @@ export const MomentsProvider = ({ children }) => {
 
     // console.log(state.moments);
     const [currentMomentId, setCurrentMomentId] = useState(null);
+
+    // let momentBaseUrl =
+    //     process.env.NODE_ENV === "development"
+    //         ? "http://localhost:7000"
+    //         : "https://wahala-movie.herokuapp.com";
     return (
         <MomentContent.Provider
-            value={{ state, dispatch, currentMomentId, setCurrentMomentId }}
+            value={{
+                state,
+                dispatch,
+                currentMomentId,
+                setCurrentMomentId,
+                // momentBaseUrl,
+            }}
         >
             {children}
         </MomentContent.Provider>
