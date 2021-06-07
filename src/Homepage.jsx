@@ -4,7 +4,7 @@ import { actions } from "./reducer/actions";
 import { fetchPosts } from "./reducer/fetchActions";
 import Moments from "./components/Moments/Moments";
 import LoadingIndicator from "./components/LoadingIndicator";
-import cryingGif from "./data/gifs/crying.gif";
+// import cryingGif from "./data/gifs/crying.gif";
 import { Link } from "react-router-dom";
 
 const Homepage = () => {

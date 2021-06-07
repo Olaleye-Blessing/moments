@@ -98,11 +98,11 @@ const Moment = ({ moment }) => {
                     <button
                         className="moment__reactions-icons btn"
                         onClick={async () => {
-                            await deletePost(moment._id);
                             dispatch({
                                 type: actions.DELETE_MOMENT,
                                 payload: moment._id,
                             });
+                            await deletePost(moment._id);
                             history.go(0);
                         }}
                     >
@@ -115,104 +115,3 @@ const Moment = ({ moment }) => {
 };
 
 export default Moment;
-
-/*
-<article className="moment">
-            <figure className="avatar">
-                <img src={mjImg} alt={title} />
-            </figure>
-            <div className="moment__details">
-                <div className="moment__detail">
-                    <div>
-                        <h4 className="moment__creator">{creator}</h4>
-                        <h5 className="moment__title">{title}</h5>
-                    </div>
-                    <p className="moment__createdAt">{formattedTime}</p>
-                    <div className="moment__hamburger-cont">
-                        <button
-                            className="moment__hamburger btn"
-                            onClick={handleHamToggle}
-                        >
-                            <BiDotsHorizontalRounded />
-                        </button>
-                        <ul ref={hamburgerRef}>
-                            <li>
-                                <button
-                                    className="btn"
-                                    onClick={() => {
-                                        setCurrentMomentId(moment._id);
-                                        history.replace("/moment");
-                                    }}
-                                >
-                                    edit
-                                </button>
-                            </li>
-                            <li>
-                                <button className="btn">bookmark</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                {message.length > 250 ? (
-                    <p className="moment__message">
-                        {message.slice(0, 250)}...
-                        <Link to="/" className="btn">
-                            read more
-                        </Link>
-                    </p>
-                ) : (
-                    <p className="moment__message">{message}</p>
-                )}
-                {tags ? (
-                    <div className="moment__tags">
-                        {tags.map((tag) => (
-                            <span key={tag}>{`#${tag} `}</span>
-                        ))}
-                    </div>
-                ) : null}
-                {image ? (
-                    <figure className="moment__image-cont">
-                        <img src={image} alt={title} />
-                    </figure>
-                ) : null}
-                <div className="moment__reactions">
-                    <button className="moment__reactions-icons btn">
-                        <FcLike className="moment__reactions-icon reactions-like" />
-                        <span className="moment__reaction-text">{likes}</span>
-                    </button>
-                    <button className="moment__reactions-icons btn">
-                        <FcDislike className="moment__reactions-icon reactions-dislike" />
-                        <span className="moment__reaction-text">
-                            {dislikes || 0}
-                        </span>
-                    </button>
-                    <button className="moment__reactions-icons btn">
-                        <FaRegComment className="moment__reactions-icon reactions-comment" />
-                        <span className="moment__reaction-text">2</span>
-                    </button>
-                    <button
-                        className="moment__reactions-icons btn"
-                        onClick={async () => {
-                            await deletePost(moment._id);
-                            dispatch({
-                                type: actions.DELETE_MOMENT,
-                                payload: moment._id,
-                            });
-                            history.go(0);
-                        }}
-                    >
-                        <MdDelete className="moment__reactions-icon reactions-delete" />
-                    </button>
-                </div>
-            </div>
-        </article>
-*/
-
-// like
-// love
-// dislike
-
-// hamburger
-// -- share
-// -- edit
-// -- if edit {edit history}

@@ -576,6 +576,7 @@ nav.bg-color {
 
 .moment__name {
   color: var(--blue-2);
+  font-size: 1.5rem;
 }
 
 .moment__seconds {

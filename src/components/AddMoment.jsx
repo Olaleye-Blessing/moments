@@ -35,6 +35,13 @@ const AddMoment = () => {
         }
     }, [moment]);
 
+    useEffect(() => {
+        return () => {
+            reset();
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     const handleChange = (e) => {
         let { name, value } = e.target;
         setMomentData({ ...momentData, [name]: value });
