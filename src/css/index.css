@@ -564,7 +564,7 @@ nav.bg-color {
 }
 
 .moment__detail {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -593,6 +593,21 @@ nav.bg-color {
 
 .moment__message::first-letter {
   text-transform: uppercase;
+}
+
+.moment__message a:-webkit-any-link {
+  color: var(--blue-2);
+  font-size: 1.8rem;
+}
+
+.moment__message a:-moz-any-link {
+  color: var(--blue-2);
+  font-size: 1.8rem;
+}
+
+.moment__message a:any-link {
+  color: var(--blue-2);
+  font-size: 1.8rem;
 }
 
 .moment__reactions {
@@ -682,6 +697,12 @@ nav.bg-color {
   }
   .moments__empty-link {
     font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .moment__reactions-icons.btn {
+    margin-right: 1.7rem;
   }
 }
 

@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { FcLike, FcDislike } from "react-icons/fc";
 import { MdDelete } from "react-icons/md";
 import { FaRegComment } from "react-icons/fa";
@@ -64,11 +64,20 @@ const Moment = ({ moment }) => {
                     <p className="moment__seconds">{formattedTime}</p>
                 </div>
                 <h3 className="moment__title">{title}</h3>
-                <p className="moment__message">{message.slice(0, 190)}</p>
+                {message.length > 190 ? (
+                    <p className="moment__message">
+                        {message.slice(0, 190)} ...
+                        <Link to="/">read more</Link>{" "}
+                    </p>
+                ) : (
+                    <p className="moment__message">{message}</p>
+                )}
                 <div className="moment__tags">
-                    {tags.map((tag, i) => (
-                        <span key={i}>{`#${tag} `}</span>
-                    ))}
+                    {tags[0]
+                        ? tags.map((tag, i) => (
+                              <span key={i}>{`#${tag} `}</span>
+                          ))
+                        : null}
                 </div>
                 <p className="moment__date">{humanDate(createdAt)}</p>
                 <div className="moment__reactions">
