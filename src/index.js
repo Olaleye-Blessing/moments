@@ -1,13 +1,36 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./css/index.css";
+import { MomentsProvider } from "./context/MomentsContext";
+// import Particles from "react-particles-js";
+
+// ReactDOM.render(
+//     <React.StrictMode>
+//         <Router>
+//             <App />
+//         </Router>
+//     </React.StrictMode>,
+//     document.getElementById("root")
+// );
+
+// ReactDOM.render(
+//     <MomentsProvider>
+//         <Router>
+//             <App />
+//         </Router>
+//     </MomentsProvider>,
+//     document.getElementById("root")
+// );
 
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
+    <MomentsProvider>
+        <Router>
+            <App />
+        </Router>
+    </MomentsProvider>,
     document.getElementById("root")
 );
 

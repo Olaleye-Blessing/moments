@@ -1,9 +1,25 @@
+import { Route, Switch } from "react-router";
+import AddMoment from "./components/AddMoment";
+// import Moments from "./components/Moments/Moments";
+import Navbar from "./components/Navbar";
+import Homepage from "./Homepage";
+import Particles from "react-particles-js";
+import { particleConfig } from "./data/particlesjs-config";
+
 function App() {
-    // "proxy": "http://localhost:7000",
     return (
-        <div className="App">
-            homepage <br /> homepage
-        </div>
+        <>
+            <Particles id="particles-js" params={particleConfig}></Particles>
+            <Navbar />
+            <Switch>
+                <Route path="/" exact>
+                    <Homepage />
+                </Route>
+                <Route path="/moment">
+                    <AddMoment />
+                </Route>
+            </Switch>
+        </>
     );
 }
 
