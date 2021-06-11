@@ -18,13 +18,16 @@ const Homepage = () => {
 
         const fetchAllPosts = async () => {
             try {
-                let { moments, status } = await fetchPosts(signal);
-                // console.log(status);
-                if (status === "success") setStatus("success");
-                // console.log(moments);
-                // dispatch({ type: "FETCH_ALL", payload: posts });
-                dispatch({ type: actions.FETCH_ALL, payload: moments });
-                // setMoments(moments);
+                let response = await fetchPosts(signal);
+
+                if (response) {
+                    let { moments, status } = response;
+                    console.log(moments);
+                    if (status === "success") {
+                        setStatus("success");
+                        dispatch({ type: actions.FETCH_ALL, payload: moments });
+                    }
+                }
             } catch (error) {
                 console.log(error);
             }

@@ -1,17 +1,28 @@
 :root {
-  --blue-1: #5252f7;
-  --blue-2: #3b3bff;
-  --blue-3: #f2f2ff;
-  --blue-4: #6470f5;
-  --blue-5: #88ed;
-  --black-1: #444;
-  --black-3: #333;
-  --black-2: #a7a7a7;
-  --black-4: #555;
   --white-1: #fff;
-  --white-2: #fffd;
+  --white-2: #888;
+  --white-3: #eeee;
+  --white-4: gray;
+  --black-1: #111;
+  --black-2: #101820ff;
+  --black-3: #3333;
+  --black-4: #0003;
+  --green-1: #2bae66ff;
+  --green-2: #33aa99;
+  --green-3: #13f813;
+  --green-4: #6c766c;
+  --red-1: #e10600ff;
+  --red-2: #933e3b;
+  --font-heading: "Open Sans", sans-serif;
 }
 
+/*
+    font-family: 'Lato', sans-serif;
+
+    font-family: 'Open Sans', sans-serif; heading
+
+    font-family: 'Zilla Slab', serif;
+*/
 html {
   font-size: 62.5%;
   -webkit-box-sizing: border-box;
@@ -31,8 +42,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
   font-size: 1.8rem;
-  background-color: #ececfa;
+  font-family: "Lato", Arial, Helvetica, sans-serif;
   margin-top: 13rem;
+  background-color: var(--black-1);
 }
 
 a {
@@ -54,6 +66,30 @@ ul {
 svg,
 img {
   max-width: 100%;
+}
+
+.alert {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  color: var(--white-1);
+  padding: 0.4rem 2.4rem 0.5rem;
+  border-radius: 0 0 0.7rem 0.7rem;
+  -webkit-box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.2), -1rem -1rem 4rem rgba(0, 0, 0, 0.2);
+          box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.2), -1rem -1rem 4rem rgba(0, 0, 0, 0.2);
+  text-align: center;
+  font-size: 1.6rem;
+  z-index: 500;
+}
+
+.alert-invalid {
+  background-color: var(--red-1);
+}
+
+.alert-valid {
+  background-color: var(--green-2);
 }
 
 .avatar {
@@ -86,7 +122,6 @@ nav {
   left: 0;
   right: 0;
   z-index: 99;
-  background-color: rgba(245, 245, 250, 0.3);
   -webkit-transition: background 0.3s linear;
   transition: background 0.3s linear;
 }
@@ -119,8 +154,7 @@ nav .width {
 }
 
 nav.bg-color {
-  background-color: var(--blue-5);
-  background-color: var(--white-2);
+  background-color: var(--black-2);
 }
 
 .nav {
@@ -140,15 +174,15 @@ nav.bg-color {
 }
 
 .nav__home:-webkit-any-link {
-  color: var(--black-1);
+  color: var(--white-1);
 }
 
 .nav__home:-moz-any-link {
-  color: var(--black-1);
+  color: var(--white-1);
 }
 
 .nav__home:any-link {
-  color: var(--black-1);
+  color: var(--white-1);
 }
 
 .nav__lists-main {
@@ -196,32 +230,40 @@ nav.bg-color {
 }
 
 .nav__lists-sub li:last-child .btn__link {
-  background-color: var(--blue-1);
-  color: var(--white-1);
+  background-color: var();
+  color: var();
   padding-left: 2.7rem;
   padding-right: 2.7rem;
 }
 
 .nav__lists-sub li:last-child .btn__link:hover {
-  background-color: var(--black-1);
-  color: var(--white-1);
+  background-color: var();
+  color: var();
 }
 
 .nav__lists-sub li .login {
   padding-left: 1.2rem;
   padding-right: 1.2rem;
+  color: var(--white-1);
 }
 
 .nav__lists-sub li .login:hover {
-  border: 0.2rem solid var(--black-1);
+  border: 0.2rem solid var();
+}
+
+.nav__lists-sub li .signup,
+.nav__lists-sub li .logout {
+  background-color: var(--green-1);
+  color: var(--white-1);
+  border-color: transparent;
 }
 
 .nav__link {
-  color: var(--blue-1);
+  color: var(--green-1);
 }
 
 .nav__link:hover {
-  color: var(--black-1);
+  color: var(--green-3);
 }
 
 .nav__icon {
@@ -259,10 +301,10 @@ nav.bg-color {
     -webkit-box-direction: normal;
         -ms-flex-flow: row wrap;
             flex-flow: row wrap;
-    background-color: var(--blue-3);
+    background-color: var(--black-2);
     padding-top: 2rem;
     padding-bottom: 2rem;
-    border-top: 0.2rem solid var(--blue-1);
+    border-top: 0.2rem solid var();
     z-index: 99;
   }
   .nav__lists-sub a {
@@ -296,7 +338,6 @@ nav.bg-color {
 
 .btn {
   display: inline-block;
-  width: 100%;
   -webkit-transition: color 0.3s linear, background 0.3s linear, border 0.3s linear;
   transition: color 0.3s linear, background 0.3s linear, border 0.3s linear;
   background-color: transparent;
@@ -308,24 +349,87 @@ nav.bg-color {
 .btn__link {
   padding: 0.5rem 1rem 0.7rem;
   border-radius: 0.5rem;
-  color: var(--blue-1);
-  border: 0.2rem solid transparent;
+  border: 0.2rem solid;
+}
+
+.btn__avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.btn__avatar img {
+  width: 3.5rem;
+  height: 3.5rem;
+  vertical-align: -0.32rem;
+}
+
+.btn-logout {
+  font-size: 1.8rem;
+  padding: 0.7rem 2rem 0.5rem !important;
+}
+
+.btn-white {
+  color: var(--white-1);
+  background-color: var(--green-1);
 }
 
 .form {
+  position: relative;
   width: 100%;
   max-width: 60rem;
   border-radius: 1rem;
-  border: 0.1rem solid gray;
-  border: 0.1rem solid var(--blue-3);
+  border: 0.1rem solid var(--green-3);
+  border: 0.1rem solid var(--white-1);
   -webkit-box-shadow: 0.2rem 0.2rem 1rem #0003, -0.2rem -0.2rem 1rem #0003;
           box-shadow: 0.2rem 0.2rem 1rem #0003, -0.2rem -0.2rem 1rem #0003;
-  -webkit-box-shadow: 0.2rem 0.2rem 1rem var(--black-3), -0.2rem -0.2rem 1rem var(--white-1);
-          box-shadow: 0.2rem 0.2rem 1rem var(--black-3), -0.2rem -0.2rem 1rem var(--white-1);
-  -webkit-box-shadow: 0.2rem 0.2rem 1rem var(--black-2), -0.2rem -0.2rem 1rem var(--blue-3);
-          box-shadow: 0.2rem 0.2rem 1rem var(--black-2), -0.2rem -0.2rem 1rem var(--blue-3);
   margin: 3rem auto 8rem;
   padding: 3rem 2rem 1rem 3rem;
+}
+
+.form__home-back {
+  position: absolute;
+  top: 0.5rem;
+  left: 0;
+  right: 1rem;
+  font-size: 1.4rem;
+}
+
+.form__head,
+.form h2 {
+  color: var(--white-1);
+}
+
+.form__other {
+  margin-top: 1rem;
+  text-align: center;
+  color: var(--white-1);
+}
+
+.form__other:last-child {
+  margin-bottom: 5rem;
+}
+
+.form__other a:-webkit-any-link {
+  color: var(--green-1);
+}
+
+.form__other a:-moz-any-link {
+  color: var(--green-1);
+}
+
+.form__other a:any-link {
+  color: var(--green-1);
 }
 
 .form__main {
@@ -350,6 +454,7 @@ nav.bg-color {
 }
 
 .form__input, .form__textarea {
+  caret-color: var(--white-1);
   -moz-appearance: none;
        appearance: none;
   -webkit-appearance: none;
@@ -359,11 +464,11 @@ nav.bg-color {
   border-radius: 0.2rem;
   border: none;
   border-bottom: 0.3rem solid transparent;
-  border-bottom: 0.1rem solid var(--blue-1);
-  background-color: var(--blue-3);
+  border-bottom: 0.1rem solid var(--green-2);
+  background-color: var(--green-4);
   width: 90%;
-  color: var(--blue-2);
-  color: var(--black-3);
+  color: var(--white-1);
+  color: var(--green-3);
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -374,22 +479,24 @@ nav.bg-color {
   -webkit-box-shadow: 0 1rem 2rem #0001;
           box-shadow: 0 1rem 2rem #0001;
   border-bottom: 0.1rem solid var(--black-1);
+  border-bottom: 0.1rem solid var(--green-1);
+  border-bottom: 0.1rem solid var(--white-1);
 }
 
 .form__input::-webkit-input-placeholder, .form__textarea::-webkit-input-placeholder {
-  color: var(--blue-1);
+  color: var(--white-1);
 }
 
 .form__input:-ms-input-placeholder, .form__textarea:-ms-input-placeholder {
-  color: var(--blue-1);
+  color: var(--white-1);
 }
 
 .form__input::-ms-input-placeholder, .form__textarea::-ms-input-placeholder {
-  color: var(--blue-1);
+  color: var(--white-1);
 }
 
 .form__input::placeholder, .form__textarea::placeholder {
-  color: var(--blue-1);
+  color: var(--white-1);
 }
 
 .form__label {
@@ -400,6 +507,8 @@ nav.bg-color {
   transition: all 0.3s linear;
   margin-bottom: 0.1rem;
   text-transform: capitalize;
+  color: var(--green-3);
+  font-weight: bold;
 }
 
 .form__textarea {
@@ -426,19 +535,48 @@ nav.bg-color {
 }
 
 .form__button:hover {
-  background-color: var(--black-1);
-  color: var(--blue-3);
+  background-color: var();
+  color: var();
 }
 
 .form__button-submit {
-  background-color: var(--blue-2);
-  color: var(--white-1);
+  background-color: var(--green-3);
+  color: var(--black-1);
   margin-top: 4rem;
+}
+
+.form__button-submit:hover {
+  background-color: var(--green-2);
+  color: var(--white-1);
 }
 
 .form__button-reset {
   background-color: red;
+  background-color: var(--red-1);
   color: var(--white-1);
+}
+
+.form__button-reset:hover {
+  background-color: var(--red-2);
+}
+
+section[data-form="auth"] {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+section[data-form="auth"] .form {
+  margin-bottom: 4rem;
+}
+
+section[data-form="auth"] .form__home {
+  text-align: center;
+  margin-top: -8rem;
+  margin-bottom: 1rem;
+}
+
+section[data-form="auth"] .form__home a {
+  color: var();
 }
 
 @media screen and (max-width: 770px) {
@@ -449,15 +587,76 @@ nav.bg-color {
 }
 
 .moments {
-  text-decoration: none;
   padding-left: 2.1rem;
   padding-right: 2.1rem;
-  margin-top: 3rem;
   margin-bottom: 4rem;
   margin-bottom: 6rem;
 }
 
 .moments__empty {
+  font-size: clamp(1rem, 50vw, 14rem);
+}
+
+.moments__empty, .moments__empty-link {
+  color: var(--white-1);
+  text-align: center;
+}
+
+.moments__empty-link {
+  font-size: clamp(1rem, 4vw, 4rem);
+}
+
+.moment {
+  max-width: 39rem;
+  position: relative;
+}
+
+.moment:focus {
+  -webkit-box-shadow: 0.4rem 0.4rem 2rem red;
+          box-shadow: 0.4rem 0.4rem 2rem red;
+}
+
+.moment__figure-cont {
+  border-radius: 1.5rem;
+  height: 17rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.moment__figure {
+  width: 100%;
+  height: 100%;
+}
+
+.moment__figure-img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.moment__overlay {
+  padding: 1rem 0.9rem;
+}
+
+.moment__media {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.moment__type {
+  border-radius: 50%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -471,239 +670,76 @@ nav.bg-color {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  font-size: 23rem;
-  font-size: calc(23rem - 4vw);
-  color: #dadce0;
-}
-
-.moments__empty-link {
-  margin-top: 3rem;
-  text-align: center;
-  font-size: 3rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  margin-bottom: 8rem;
-}
-
-.moments__empty-link a:-webkit-any-link {
-  color: blue;
-}
-
-.moments__empty-link a:-moz-any-link {
-  color: blue;
-}
-
-.moments__empty-link a:any-link {
-  color: blue;
-}
-
-.moment {
-  margin-right: auto;
-  margin-left: auto;
-  max-width: 35rem;
-  border-radius: 1.3rem;
-  padding-bottom: 3rem;
-  padding-bottom: 2rem;
-  -webkit-box-shadow: 0.2rem 0.2rem 1rem var(--black-2), -0.2rem -0.2rem 1rem var(--blue-3);
-          box-shadow: 0.2rem 0.2rem 1rem var(--black-2), -0.2rem -0.2rem 1rem var(--blue-3);
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-}
-
-.moment:hover {
-  -webkit-box-shadow: 0.2rem 0.2rem 1rem var(--black-2), -0.2rem -0.2rem 1rem var(--blue-3);
-          box-shadow: 0.2rem 0.2rem 1rem var(--black-2), -0.2rem -0.2rem 1rem var(--blue-3);
-  -webkit-box-shadow: 0.2rem 0.2rem 1rem var(--blue-3), -0.2rem -0.2rem 1rem var(--blue-3);
-          box-shadow: 0.2rem 0.2rem 1rem var(--blue-3), -0.2rem -0.2rem 1rem var(--blue-3);
-  -webkit-box-shadow: 0.2rem 0.2rem 1rem var(--white-1), -0.2rem -0.2rem 1rem var(--blue-3);
-          box-shadow: 0.2rem 0.2rem 1rem var(--white-1), -0.2rem -0.2rem 1rem var(--blue-3);
-}
-
-.moment__figures {
-  height: 25rem;
-  overflow: hidden;
-  position: relative;
-  border-top-left-radius: 1.3rem;
-  border-top-right-radius: 1.3rem;
-}
-
-.moment__figure {
-  width: 100%;
-  height: 100%;
-}
-
-.moment__figure-img {
-  width: 100%;
-  height: 100%;
-}
-
-.moment__edit {
+  padding: 0.8rem;
+  background-color: var(--black-4);
+  background-color: var(--green-4);
   color: var(--white-1);
-  font-size: 2.5rem;
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-}
-
-.moment__edit:hover {
-  color: var(--black-2);
-}
-
-.moment__details {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-.moment__details > *:not(:last-child) {
-  margin-bottom: 1.2rem;
-}
-
-.moment__detail {
-  margin-top: 3rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  gap: 1rem;
-}
-
-.moment__name {
-  color: var(--blue-2);
-  font-size: 1.5rem;
-}
-
-.moment__seconds {
-  margin-top: 0.5rem;
-  color: var(--blue-4);
-  font-size: 1.3rem;
-}
-
-.moment__title {
-  color: var(--black-3);
-  text-align: center;
-  margin-bottom: 2rem !important;
-  margin-top: -0.5rem;
-}
-
-.moment__message::first-letter {
-  text-transform: uppercase;
-}
-
-.moment__message a:-webkit-any-link {
-  color: var(--blue-2);
-  font-size: 1.8rem;
-}
-
-.moment__message a:-moz-any-link {
-  color: var(--blue-2);
-  font-size: 1.8rem;
-}
-
-.moment__message a:any-link {
-  color: var(--blue-2);
-  font-size: 1.8rem;
-}
-
-.moment__reactions {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  display: flex;
-  align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  flex-flow: row wrap;
-  gap: 2rem;
-  margin-top: 2rem;
-}
-
-.moment__reactions-icons.btn {
-  width: auto;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-.moment__reactions-icons.btn svg {
-  vertical-align: -0.1rem;
-}
-
-.moment__reactions-icon {
-  margin-right: 0.7rem;
 }
 
 .moment__date {
-  color: var(--black-2);
+  font-size: 1.5rem;
+  color: var(--white-1);
 }
 
-.moment__tags span {
-  color: var(--blue-2);
+.moment__title {
+  color: var(--white-1);
 }
 
-@media screen and (min-width: 391px) {
+.moment__detail {
+  margin-top: 1rem;
+}
+
+.moment__detail > div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
+  text-align: right;
+}
+
+.moment__detail button {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  font-size: 1.8rem;
+}
+
+.moment__bookmark {
+  color: var(--green-1);
+}
+
+.moment__edit {
+  margin-left: 1rem;
+  color: var(--white-1);
+}
+
+.moment__edit:hover {
+  color: var(--white-2);
+}
+
+.moment__creator {
+  margin-top: -3rem;
+  color: var(--green-1);
+}
+
+@media screen and (min-width: 499px) {
   .moments {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: (minmax(30rem, 1fr))[auto-fit];
         grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    gap: 7rem 2.7rem;
-    gap: 5rem 2.7rem;
+    -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 3rem 4rem;
   }
-}
-
-@media screen and (max-width: 391px) {
   .moment {
-    margin-bottom: 5rem;
-  }
-  .moment__details > *:not(:last-child) {
-    margin-bottom: 2rem;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
-@media screen and (max-width: 770px) {
-  .moments {
-    margin-bottom: 10rem;
-  }
-  .moments__empty {
-    font-size: 14rem;
-  }
-  .moments__empty-link {
-    font-size: 2.5rem;
-  }
-}
-
-@media screen and (max-width: 426px) {
-  .moments {
-    margin-bottom: 10rem;
-  }
-  .moments__empty {
-    font-size: 9rem;
-  }
-  .moments__empty-link {
-    font-size: 1.5rem;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .moment__reactions-icons.btn {
-    margin-right: 1.7rem;
+@media screen and (max-width: 499px) {
+  .moment {
+    margin: 3rem auto;
   }
 }
 
@@ -730,9 +766,12 @@ nav.bg-color {
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #1118;
+  background-color: var();
+  color: var();
   background-color: #2228;
-  color: var(--white-1);
+  background-color: #0003;
+  background-color: var(--black-4);
+  background-color: #444b;
 }
 
 .lds-container {
@@ -766,8 +805,8 @@ nav.bg-color {
   height: 6.4rem;
   margin: 0.8rem;
   border-radius: 50%;
-  border: 0.6rem solid var(--blue-1);
-  border-color: var(--blue-1) transparent var(--blue-1) transparent;
+  border: 0.6rem solid var();
+  border-color: var() transparent var() transparent;
   -webkit-animation: lds-dual-ring 1.2s linear infinite;
           animation: lds-dual-ring 1.2s linear infinite;
 }

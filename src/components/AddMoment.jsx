@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import FormButton from "./Form/FormButton";
 import FormFile from "./Form/FormFile";
@@ -10,6 +11,7 @@ import { imagesToBase64 } from "../utilities/imageToBase64";
 import { useMomentContext } from "../context/MomentsContext";
 import { createPost, updatePost } from "../reducer/fetchActions";
 import { actions } from "../reducer/actions";
+import Alert from "./Alert";
 
 const AddMoment = () => {
     let history = useHistory();
@@ -17,7 +19,7 @@ const AddMoment = () => {
     let { state, dispatch, currentMomentId, setCurrentMomentId } =
         useMomentContext();
     const [momentData, setMomentData] = useState({
-        creator: "",
+        // creator: "",
         title: "",
         message: "",
         tags: "",
@@ -55,26 +57,42 @@ const AddMoment = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(momentData);
-        console.log(momentData.tags);
 
         if (currentMomentId) {
             let { moment } = await updatePost(currentMomentId, momentData);
             // console.log(moment);
             dispatch({ type: actions.UPDATE_MOMENT, payload: moment });
         } else {
-            let { moment } = await createPost(momentData);
-            dispatch({ type: actions.CREATE_MOMENT, payload: moment });
-        }
+            try {
+                // console.log(momentData);
+                // let result = await createPost(momentData);
+                // console.log(result);
 
-        reset();
-        history.replace("/");
+                let { moment } = await createPost(momentData);
+                dispatch({ type: actions.CREATE_MOMENT, payload: moment });
+                reset();
+                history.replace("/");
+            } catch (error) {
+                if (error.code === 401) {
+                    let message = {
+                        show: true,
+                        type: "invalid",
+                        msg: `${error.message}. Redirecting to login page in 5 secs`,
+                    };
+                    dispatch({ type: actions.ERROR, payload: message });
+
+                    setTimeout(() => {
+                        history.replace("/auth/login");
+                    }, 5000);
+                }
+            }
+        }
     };
 
     const reset = () => {
         setCurrentMomentId(null);
         setMomentData({
-            creator: "",
+            // creator: "",
             title: "",
             message: "",
             tags: "",
@@ -82,17 +100,31 @@ const AddMoment = () => {
         });
     };
 
+    // console.log({ ...state });
+    let { errorAlert } = state;
+    // console.log(errorAlert);
+
+    // console.log(currentMomentId);
     return (
         <main className="form__main">
+            {errorAlert.show && <Alert {...errorAlert} />}
             <form className="form" onSubmit={handleSubmit}>
+                {currentMomentId ? (
+                    <Link
+                        to="/"
+                        className="btn btn-white btn__link form__home-back"
+                    >
+                        back to moments
+                    </Link>
+                ) : null}
                 <h2 className="form__head">
                     {moment ? "Update" : "Create"} Your Moment
                 </h2>
-                <FormText
+                {/* <FormText
                     name="creator"
                     value={momentData.creator}
                     handleChange={handleChange}
-                />
+                /> */}
                 <FormText
                     name="title"
                     value={momentData.title}

@@ -1,8 +1,8 @@
-const FormText = ({ type, label, name, value, handleChange, placeholder }) => {
+const FormEmail = ({ label, name, value, handleChange, placeholder }) => {
     return (
         <div className="form__control">
             <input
-                type={type}
+                type="email"
                 id={name}
                 name={name}
                 placeholder={placeholder || name}
@@ -18,8 +18,4 @@ const FormText = ({ type, label, name, value, handleChange, placeholder }) => {
     );
 };
 
-FormText.defaultProps = {
-    type: "text",
-};
-
-export default FormText;
+export default FormEmail;

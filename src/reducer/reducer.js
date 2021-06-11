@@ -23,5 +23,16 @@ export const reducer = (state, action) => {
             );
 
             return { ...state, moment: currentMoments };
+
+        case actions.AUTHENTICATION:
+            localStorage.setItem("profile", JSON.stringify(action.payload));
+            return { ...state, user: action.payload };
+
+        case actions.LOGOUT:
+            localStorage.removeItem("profile");
+            return { ...state, user: null };
+
+        case actions.ERROR:
+            return { ...state, errorAlert: { ...action.payload } };
     }
 };

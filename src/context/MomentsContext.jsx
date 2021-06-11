@@ -5,6 +5,12 @@ const MomentContent = createContext();
 
 const initialState = {
     moments: [],
+    user: null,
+    errorAlert: {
+        show: false,
+        type: "",
+        msg: "",
+    },
 };
 
 export const MomentsProvider = ({ children }) => {
