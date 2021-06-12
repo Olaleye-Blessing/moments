@@ -1,7 +1,8 @@
 /* eslint-disable no-throw-literal */
-import getBaseUrl from "./../utilities/getBaseUrl";
+// import getBaseUrl from "./../utilities/getBaseUrl";
 
-let baseUrl = getBaseUrl();
+// let baseUrl = getBaseUrl();
+let baseUrl = `https://momentss.herokuapp.com`;
 
 export const fetchPosts = async (signal) => {
     try {
