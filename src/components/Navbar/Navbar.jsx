@@ -3,6 +3,8 @@ import { BsSearch } from "react-icons/bs";
 import { IoMdNotifications } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
+import { BsPerson } from "react-icons/bs";
+
 import HomeLogo from "../HomeLogo";
 import Avatar from "../Avatar";
 import mjImg from "./../../data/images/mj1.jpg";
@@ -69,6 +71,8 @@ const Navbar = () => {
         }
     };
 
+    // console.log(user);
+
     return (
         <nav className="nav" ref={navRef}>
             <div className="width">
@@ -100,7 +104,16 @@ const Navbar = () => {
                                     to="/profile"
                                     className="btn btn__avatar"
                                 >
-                                    <Avatar src={mjImg} />
+                                    {/* <Avatar src={user?.profilePic || mjImg} /> */}
+                                    {user.profilePic ? (
+                                        <Avatar
+                                            src={user?.profilePic || mjImg}
+                                        />
+                                    ) : (
+                                        <figure className="avatar__icon">
+                                            <BsPerson />
+                                        </figure>
+                                    )}
                                 </NavLink>
                             </li>
                             <li>

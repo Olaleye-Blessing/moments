@@ -115,6 +115,26 @@ img {
   margin-top: 0.5rem;
 }
 
+.avatar__icon {
+  background-color: var(--white-1);
+  padding: 0.8rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  border-radius: 50%;
+  color: var(--green-1);
+}
+
 nav {
   font-size: 1.8rem;
   position: fixed;
@@ -400,7 +420,6 @@ nav.bg-color {
 .form__home-back {
   position: absolute;
   top: 0.5rem;
-  left: 0;
   right: 1rem;
   font-size: 1.4rem;
 }
@@ -609,11 +628,8 @@ section[data-form="auth"] .form__home a {
 .moment {
   max-width: 39rem;
   position: relative;
-}
-
-.moment:focus {
-  -webkit-box-shadow: 0.4rem 0.4rem 2rem red;
-          box-shadow: 0.4rem 0.4rem 2rem red;
+  cursor: -webkit-grab;
+  cursor: grab;
 }
 
 .moment__figure-cont {
@@ -721,7 +737,7 @@ section[data-form="auth"] .form__home a {
   color: var(--green-1);
 }
 
-@media screen and (min-width: 499px) {
+@media screen and (min-width: 569px) {
   .moments {
     display: -ms-grid;
     display: grid;
@@ -731,13 +747,9 @@ section[data-form="auth"] .form__home a {
         grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     gap: 3rem 4rem;
   }
-  .moment {
-    margin-right: auto;
-    margin-left: auto;
-  }
 }
 
-@media screen and (max-width: 499px) {
+@media screen and (max-width: 569px) {
   .moment {
     margin: 3rem auto;
   }

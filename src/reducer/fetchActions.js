@@ -1,9 +1,11 @@
 /* eslint-disable no-throw-literal */
 import getBaseUrl from "./../utilities/getBaseUrl";
 
+let baseUrl = getBaseUrl();
+
 export const fetchPosts = async (signal) => {
     try {
-        let req = await fetch(`${getBaseUrl()}/moments`, {
+        let req = await fetch(`${baseUrl}/moments`, {
             signal,
             // credentials: "include",
         });
@@ -17,7 +19,7 @@ export const fetchPosts = async (signal) => {
 
 export const createPost = async (moment) => {
     try {
-        let req = await fetch(`${getBaseUrl()}/moments`, {
+        let req = await fetch(`${baseUrl}/moments`, {
             method: "POST",
             body: JSON.stringify(moment),
             headers: {
@@ -39,7 +41,7 @@ export const updatePost = async (id, moment) => {
     let body = { _id: id, ...moment };
 
     try {
-        let req = await fetch(`${getBaseUrl()}/moments/${id}`, {
+        let req = await fetch(`${baseUrl}/moments/${id}`, {
             method: "PATCH",
             body: JSON.stringify(body),
             headers: {
@@ -59,7 +61,7 @@ export const deletePost = async (id) => {
 
     console.log("got here");
     try {
-        await fetch(`${getBaseUrl()}/moments/${id}`, {
+        await fetch(`${baseUrl}/moments/${id}`, {
             method: "DELETE",
             // body: JSON.stringify(body),
             // headers: {
@@ -73,7 +75,7 @@ export const deletePost = async (id) => {
 
 export const signup = async (data) => {
     try {
-        let req = await fetch(`${getBaseUrl()}/auth/signup`, {
+        let req = await fetch(`${baseUrl}/auth/signup`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -96,7 +98,7 @@ export const signup = async (data) => {
 
 export const login = async (data) => {
     try {
-        let req = await fetch(`${getBaseUrl()}/auth/login`, {
+        let req = await fetch(`${baseUrl}/auth/login`, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -119,7 +121,7 @@ export const login = async (data) => {
 
 export const logout = async () => {
     try {
-        let req = await fetch(`${getBaseUrl()}/auth/logout`);
+        let req = await fetch(`${baseUrl}/auth/logout`);
         let res = await req.json();
 
         if (!req.ok) throw res;

@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Alert from "../../components/Alert";
 import FormButton from "../../components/Form/FormButton";
+import FormFile from "../../components/Form/FormFile";
 import FormText from "../../components/Form/FormText";
 import HomeLogo from "../../components/HomeLogo";
 import { useMomentContext } from "../../context/MomentsContext";
 import { actions } from "../../reducer/actions";
 import { signup } from "../../reducer/fetchActions";
+import { imagesToBase64 } from "../../utilities/imageToBase64";
 
 const Signup = () => {
     let history = useHistory();
@@ -18,7 +20,7 @@ const Signup = () => {
         email: "",
         password: "",
         confirmPassword: "",
-        // profilePic: "",
+        profilePic: "",
     });
 
     const handleChange = (e) => {
@@ -26,14 +28,22 @@ const Signup = () => {
         setSignUpData({ ...signUpData, [name]: value });
     };
 
+    const handleImageChange = async (e) => {
+        let image = await imagesToBase64(e);
+        image = image[0];
+        setSignUpData({ ...signUpData, profilePic: image });
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("submitted....");
+        // console.log(signUpData);
+        // return;
         try {
             let res = await signup(signUpData);
             console.log(res);
             if (res.status === "success") {
-                dispatch({ type: actions.AUTHENTICATION, payload: res });
+                dispatch({ type: actions.AUTHENTICATION, payload: res.user });
                 history.replace("/");
             }
         } catch (error) {
@@ -97,13 +107,7 @@ const Signup = () => {
                     value={signUpData.confirmPassword}
                     handleChange={handleChange}
                 />
-                {/* <FormText
-                    name="profilePic"
-                    label="Profile Picture"
-                    placeholder="Profile Picture"
-                    value={signUpData.profilePic}
-                    handleChange={handleChange}
-                /> */}
+                <FormFile name="profilePic" handleChange={handleImageChange} />
                 <FormButton
                     text="create"
                     type="submit"

@@ -5,7 +5,8 @@ const MomentContent = createContext();
 
 const initialState = {
     moments: [],
-    user: null,
+    // user: null,
+    user: JSON.parse(localStorage.getItem("profile")),
     errorAlert: {
         show: false,
         type: "",

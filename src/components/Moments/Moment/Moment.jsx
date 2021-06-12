@@ -1,44 +1,22 @@
-import { Link, useHistory } from "react-router-dom";
-import { FcLike, FcDislike } from "react-icons/fc";
-import { MdDelete } from "react-icons/md";
-import { FaRegComment } from "react-icons/fa";
-import { BiDotsHorizontalRounded } from "react-icons/bi";
-import { HiDotsHorizontal } from "react-icons/hi";
+import { useHistory } from "react-router-dom";
 import { BsBookmark } from "react-icons/bs";
-import { IoVideocamOutline } from "react-icons/io";
 import { BiVideo } from "react-icons/bi";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { VscEdit } from "react-icons/vsc";
 
-import mjImg from "./../../../data/images/mj2.jpg";
-import { createRef } from "react";
 import { useMomentContext } from "../../../context/MomentsContext";
-import { formatDate } from "./../../../utilities/formatDate";
-import { deletePost } from "../../../reducer/fetchActions";
-import { actions } from "../../../reducer/actions";
 import humanDate from "../../../utilities/humanDate";
 import defaultImage from "./../../../data/images/blueFlower.jpg";
-import Avatar from "../../Avatar";
 
 const Moment = ({ moment }) => {
-    // console.log(moment);
-    let { setCurrentMomentId, dispatch } = useMomentContext();
+    let { setCurrentMomentId, state } = useMomentContext();
     let history = useHistory();
 
-    let {
-        creator,
-        createdAt,
-        message,
-        dislikes,
-        likes,
-        image,
-        title,
-        tags,
-        _id: id,
-    } = moment;
+    let { user } = state;
+    let { creator, createdAt, image, title } = moment;
 
-    let secondsAgo = Date.now() - new Date(createdAt).getTime();
+    // let secondsAgo = Date.now() - new Date(createdAt).getTime();
 
-    let formattedTime = formatDate(secondsAgo / 1000);
+    // let formattedTime = formatDate(secondsAgo / 1000);
 
     image = !image ? defaultImage : image;
 
@@ -75,18 +53,20 @@ const Moment = ({ moment }) => {
                             <button className="btn moment__bookmark">
                                 <BsBookmark />
                             </button>
-                            <button
-                                className="btn moment__edit"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    // e.preventDefault();
+                            {user?._id === creator._id && (
+                                <button
+                                    className="btn moment__edit"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        // e.preventDefault();
 
-                                    setCurrentMomentId(moment._id);
-                                    history.replace("/moment");
-                                }}
-                            >
-                                <BsThreeDotsVertical />
-                            </button>
+                                        setCurrentMomentId(moment._id);
+                                        history.replace("/moment");
+                                    }}
+                                >
+                                    <VscEdit />
+                                </button>
+                            )}
                         </div>
                         <h5 className="moment__creator">{creator.name}</h5>
                     </div>

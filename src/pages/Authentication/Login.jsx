@@ -29,7 +29,7 @@ const Login = () => {
             let res = await login(loginData);
             if (res.status === "success") {
                 // console.log("yes");
-                dispatch({ type: actions.AUTHENTICATION, payload: res });
+                dispatch({ type: actions.AUTHENTICATION, payload: res.user });
 
                 let message = {
                     show: true,

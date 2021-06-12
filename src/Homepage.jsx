@@ -22,7 +22,7 @@ const Homepage = () => {
 
                 if (response) {
                     let { moments, status } = response;
-                    console.log(moments);
+
                     if (status === "success") {
                         setStatus("success");
                         dispatch({ type: actions.FETCH_ALL, payload: moments });
@@ -41,15 +41,7 @@ const Homepage = () => {
 
     let { moments } = state;
 
-    // return moments.length < 1 ? (
-    //     <div>loading</div>
-    // ) : (
-    //     <main>
-    //         <Moments moments={moments} />
-    //     </main>
-    // );
     return moments.length < 1 && !status ? (
-        // <div>loading</div>
         <LoadingIndicator />
     ) : moments.length < 1 && status ? (
         <>
