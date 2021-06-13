@@ -12,7 +12,7 @@ const Moment = ({ moment }) => {
     let history = useHistory();
 
     let { user } = state;
-    let { creator, createdAt, image, title } = moment;
+    let { creator, createdAt, image, title, _id } = moment;
 
     // let secondsAgo = Date.now() - new Date(createdAt).getTime();
 
@@ -22,8 +22,9 @@ const Moment = ({ moment }) => {
 
     const showMomentDetail = (e) => {
         e.stopPropagation();
-        history.push("/auth/login");
+        history.push(`/moments/${_id}`);
     };
+
     return (
         <article
             className="moment"
@@ -47,7 +48,9 @@ const Moment = ({ moment }) => {
                             {humanDate(createdAt)}
                         </div>
                     </div>
-                    <h3 className="moment__title">{title}</h3>
+                    <h3 className="moment__title" title={title}>
+                        {title}
+                    </h3>
                     <div className="moment__detail">
                         <div>
                             <button className="btn moment__bookmark">

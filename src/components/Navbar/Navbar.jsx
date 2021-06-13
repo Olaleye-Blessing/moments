@@ -65,6 +65,7 @@ const Navbar = () => {
         console.log("logging out");
         let res = await logout();
         if (res.status === "success") {
+            console.log("logged out...");
             console.log(res);
             dispatch({ type: actions.LOGOUT, payload: res });
             history.go(0);
@@ -101,7 +102,7 @@ const Navbar = () => {
                                     <Avatar src={mjImg} />
                                 </button> */}
                                 <NavLink
-                                    to="/profile"
+                                    to={`/profile/${user._id}`}
                                     className="btn btn__avatar"
                                 >
                                     {/* <Avatar src={user?.profilePic || mjImg} /> */}

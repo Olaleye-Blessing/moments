@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import FormButton from "./Form/FormButton";
-import FormFile from "./Form/FormFile";
-import FormText from "./Form/FormText";
-import FormTextArea from "./Form/FormTextArea";
+import FormButton from "../Form/FormButton";
+import FormFile from "../Form/FormFile";
+import FormText from "../Form/FormText";
+import FormTextArea from "../Form/FormTextArea";
 // import FileBase from "react-file-base64";
-import { imagesToBase64 } from "../utilities/imageToBase64";
-import { useMomentContext } from "../context/MomentsContext";
-import { createPost, updatePost } from "../reducer/fetchActions";
-import { actions } from "../reducer/actions";
-import Alert from "./Alert";
+import { imagesToBase64 } from "../../utilities/imageToBase64";
+import { useMomentContext } from "../../context/MomentsContext";
+import { createPost, updatePost } from "../../reducer/fetchActions";
+import { actions } from "../../reducer/actions";
+import Alert from "../Alert";
 
 const AddMoment = () => {
     let history = useHistory();

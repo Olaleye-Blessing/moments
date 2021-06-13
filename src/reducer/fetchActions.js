@@ -121,12 +121,29 @@ export const login = async (data) => {
 
 export const logout = async () => {
     try {
-        let req = await fetch(`${baseUrl}/auth/logout`);
+        let req = await fetch(`${baseUrl}/auth/logout`, {
+            credentials: "include",
+        });
         let res = await req.json();
 
         if (!req.ok) throw res;
         return res;
     } catch (error) {
         console.log(error);
+    }
+};
+
+export const momentDetails = async (id, signal) => {
+    try {
+        let req = await fetch(`${baseUrl}/moments/${id}`, {
+            credentials: "include",
+            signal,
+        });
+        let res = await req.json();
+
+        if (!req.ok) throw res;
+        return res;
+    } catch (error) {
+        if (error.name !== "AbortError") throw error;
     }
 };

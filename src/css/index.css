@@ -39,24 +39,25 @@ html {
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.5;
   font-size: 1.8rem;
   font-family: "Lato", Arial, Helvetica, sans-serif;
   margin-top: 13rem;
   background-color: var(--black-1);
+  color: var(--white-1);
 }
 
 a {
   text-decoration: none;
 }
 
-#particles-js {
-  position: fixed;
-  z-index: -100;
-  width: 100%;
-  height: 100%;
-  display: none;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
 }
 
 ul {
@@ -66,6 +67,16 @@ ul {
 svg,
 img {
   max-width: 100%;
+}
+
+::-moz-selection {
+  background-color: var(--green-1);
+  color: var(--white-1);
+}
+
+::selection {
+  background-color: var(--green-1);
+  color: var(--white-1);
 }
 
 .alert {
@@ -370,6 +381,7 @@ nav.bg-color {
   padding: 0.5rem 1rem 0.7rem;
   border-radius: 0.5rem;
   border: 0.2rem solid;
+  color: var(--green-1);
 }
 
 .btn__avatar {
@@ -634,7 +646,7 @@ section[data-form="auth"] .form__home a {
 
 .moment__figure-cont {
   border-radius: 1.5rem;
-  height: 17rem;
+  height: 20rem;
   overflow: hidden;
   position: relative;
 }
@@ -699,6 +711,11 @@ section[data-form="auth"] .form__home a {
 
 .moment__title {
   color: var(--white-1);
+  margin-top: 1.1rem;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
 }
 
 .moment__detail {
@@ -752,6 +769,197 @@ section[data-form="auth"] .form__home a {
 @media screen and (max-width: 569px) {
   .moment {
     margin: 3rem auto;
+  }
+}
+
+[data-page="article"] {
+  padding-left: 3rem;
+  padding-right: 3rem;
+  padding: 1rem 3rem 4rem;
+  max-width: 120rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.article__img {
+  max-width: 68rem;
+  margin-bottom: 2rem;
+}
+
+.article__img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+}
+
+.article__detail-creation {
+  margin-bottom: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.article__detail-creation div:first-child {
+  margin-right: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.article__detail-creation div:first-child figure {
+  margin-right: 0.1rem;
+}
+
+.article__detail-creation a {
+  border: none;
+}
+
+.article__detail-creation a:hover {
+  text-decoration: underline;
+  color: var(--green-2);
+}
+
+.article__createdAt {
+  color: var(--white-4);
+}
+
+.article__actions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  max-width: 50rem;
+}
+
+.article__actions > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.article__actions > div:first-child {
+  margin-right: auto;
+}
+
+.article__actions > div div {
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.article__actions > div div:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.article__actions > div div span {
+  margin-left: 0.4rem;
+  vertical-align: 0rem;
+}
+
+.article__message {
+  color: var(--white-1);
+  margin-bottom: 1.5rem;
+  max-width: 100rem;
+}
+
+.article__tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.article__tag {
+  margin-top: 2rem;
+}
+
+.article__tag:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.article__tag a {
+  padding: 0.15rem 0.8rem 0.4rem;
+}
+
+.article__tag a:hover {
+  color: var(--green-3);
+}
+
+.article__comment-form {
+  margin-top: 3rem;
+}
+
+.article__comment-form .form__textarea, .article__comment-form .form__label {
+  margin-left: 0;
+}
+
+.article__comment-form .form__textarea:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(4.1rem);
+          transform: translateY(4.1rem);
+  margin-left: 1.3rem;
+}
+
+.article__comment-form .form__button-submit {
+  margin: 0 0 0 0;
+  padding: 0.6rem 0.9rem 0.8rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+@media screen and (max-width: 770px) {
+  [data-page="article"] {
+    margin-bottom: 7rem;
   }
 }
 
@@ -817,8 +1025,8 @@ section[data-form="auth"] .form__home a {
   height: 6.4rem;
   margin: 0.8rem;
   border-radius: 50%;
-  border: 0.6rem solid var();
-  border-color: var() transparent var() transparent;
+  border: 0.6rem solid var(--green-1);
+  border-color: var(--green-1) transparent var(--green-3) transparent;
   -webkit-animation: lds-dual-ring 1.2s linear infinite;
           animation: lds-dual-ring 1.2s linear infinite;
 }
@@ -850,6 +1058,36 @@ section[data-form="auth"] .form__home a {
   max-width: 100rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 2.1rem;
+  padding-right: 2.1rem;
+}
+
+.like {
+  color: var(--green-3);
+}
+
+.like:hover {
+  color: var(--green-1);
+}
+
+.dislike,
+.delete {
+  color: var(--red-2);
+  color: var(--red-1);
+}
+
+.dislike:hover,
+.delete:hover {
+  color: var(--red-1);
+  color: var(--red-2);
+}
+
+.share,
+.comment {
+  color: var(--white-1);
+}
+
+.share:hover,
+.comment:hover {
+  color: var(--white-4);
 }

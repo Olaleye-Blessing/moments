@@ -1,4 +1,4 @@
-const FormTextArea = ({ name, value, handleChange }) => {
+const FormTextArea = ({ name, value, handleChange, placeholder }) => {
     return (
         <div className="form__control">
             <textarea
@@ -7,7 +7,7 @@ const FormTextArea = ({ name, value, handleChange }) => {
                 name={name}
                 rows="9"
                 cols="33"
-                placeholder="place your text here"
+                placeholder={placeholder}
                 value={value}
                 onChange={handleChange}
             ></textarea>
@@ -16,6 +16,10 @@ const FormTextArea = ({ name, value, handleChange }) => {
             </label>
         </div>
     );
+};
+
+FormTextArea.defaultProps = {
+    placeholder: "place your text here",
 };
 
 export default FormTextArea;
