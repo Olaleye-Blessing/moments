@@ -1,81 +1,179 @@
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+// import { BiLike, BiDislike } from "react-icons/bi";
+import { FaRegComment } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 import { BsBookmark } from "react-icons/bs";
-import { BiVideo } from "react-icons/bi";
-import { VscEdit } from "react-icons/vsc";
+// import { BiVideo } from "react-icons/bi";
+import { VscEdit, VscReactions } from "react-icons/vsc";
 
 import { useMomentContext } from "../../../context/MomentsContext";
 import humanDate from "../../../utilities/humanDate";
 import defaultImage from "./../../../data/images/blueFlower.jpg";
+import Avatar from "../../Avatar";
 
 const Moment = ({ moment }) => {
-    let { setCurrentMomentId, state } = useMomentContext();
+    // let { setCurrentMomentId, state } = useMomentContext();
+    let { state } = useMomentContext();
     let history = useHistory();
 
     let { user } = state;
-    let { creator, createdAt, image, title, _id } = moment;
+    let {
+        creator,
+        createdAt,
+        // image,
+        title,
+        _id,
+        tags,
+        message,
+        likes,
+        dislikes,
+    } = moment;
+    // console.log(moment);
+    let { profilePic, name } = creator;
+
+    profilePic = profilePic || defaultImage;
+
+    tags = [...new Set([...tags])]; //? eliminate duplicate tags
 
     // let secondsAgo = Date.now() - new Date(createdAt).getTime();
 
     // let formattedTime = formatDate(secondsAgo / 1000);
 
-    image = !image ? defaultImage : image;
+    // console.log(humanDate(createdAt));
+
+    // image = !image ? defaultImage : image;
 
     const showMomentDetail = (e) => {
         e.stopPropagation();
         history.push(`/moments/${_id}`);
     };
 
+    // console.log(moment);
+    // console.log(likes, dislikes);
+
+    let reactions = Number(likes) + Number(dislikes);
+
+    console.log(user, creator);
     return (
-        <article
-            className="moment"
-            tabIndex={0}
-            onClick={showMomentDetail}
-            onKeyDown={(e) => {
-                if (e.code === "Space" || e.code === "Enter")
-                    showMomentDetail(e);
-            }}
-        >
-            <div className="moment__figure-cont">
+        <article className="moment" tabIndex={0} onClick={showMomentDetail}>
+            {/* {image ? (
                 <figure className="moment__figure">
                     <img src={image} alt="" className="moment__figure-img" />
                 </figure>
-                <div className="overlay moment__overlay">
-                    <div className="moment__media">
-                        <div className="moment__type">
-                            <BiVideo />
-                        </div>
-                        <div className="moment__date">
+            ) : null} */}
+            <section className="moment__detail">
+                <div className="moment__detail-profileDate">
+                    <Avatar
+                        src={profilePic}
+                        sub_class="moment__creator-avatar"
+                    />
+                    <div>
+                        <Link to="/home" className="moment__creator-name">
+                            {name}
+                        </Link>
+                        <p className="moment__createdAt">
                             {humanDate(createdAt)}
-                        </div>
-                    </div>
-                    <h3 className="moment__title" title={title}>
-                        {title}
-                    </h3>
-                    <div className="moment__detail">
-                        <div>
-                            <button className="btn moment__bookmark">
-                                <BsBookmark />
-                            </button>
-                            {user?._id === creator._id && (
-                                <button
-                                    className="btn moment__edit"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        // e.preventDefault();
-
-                                        setCurrentMomentId(moment._id);
-                                        history.replace("/moment");
-                                    }}
-                                >
-                                    <VscEdit />
-                                </button>
-                            )}
-                        </div>
-                        <h5 className="moment__creator">{creator.name}</h5>
+                        </p>
                     </div>
                 </div>
-            </div>
+                <div className="moment__detail-other">
+                    <h3 className="moment__title">{title}</h3>
+                    <p className="moment__message">{message}</p>
+                    <ul className="moment__tags">
+                        {tags.map((tag) => (
+                            <li key={tag} className="moment__tag">
+                                <Link
+                                    to={`/home`}
+                                    className="btn moment__tag-link"
+                                >
+                                    {tag}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                    <div>
+                        <ul className="moment__reactions">
+                            <li>
+                                <VscReactions />
+                                <span>
+                                    {reactions} reaction
+                                    {reactions > 0 ? "s" : null}
+                                </span>
+                            </li>
+                            <li>
+                                <FaRegComment />
+                                <span>22 comments</span>
+                            </li>
+                        </ul>
+                        <ul className="moment__actions">
+                            {user?._id === creator._id ? (
+                                <li>
+                                    <MdDelete className="moment__delete" />
+                                </li>
+                            ) : null}
+                            {user?._id === creator._id && (
+                                <li>
+                                    <VscEdit className="moment__edit" />
+                                </li>
+                            )}
+                            <li>
+                                <BsBookmark className="moment__bookmark" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
         </article>
+        // <article
+        //     className="moment"
+        //     tabIndex={0}
+        //     onClick={showMomentDetail}
+        //     onKeyDown={(e) => {
+        //         if (e.code === "Space" || e.code === "Enter")
+        //             showMomentDetail(e);
+        //     }}
+        // >
+        //     <div className="moment__figure-cont">
+        //         <figure className="moment__figure">
+        //             <img src={image} alt="" className="moment__figure-img" />
+        //         </figure>
+        //         <div className="overlay moment__overlay">
+        //             <div className="moment__media">
+        //                 <div className="moment__type">
+        //                     <BiVideo />
+        //                 </div>
+        //                 <div className="moment__date">
+        //                     {humanDate(createdAt)}
+        //                 </div>
+        //             </div>
+        //             <h3 className="moment__title" title={title}>
+        //                 {title}
+        //             </h3>
+        //             <div className="moment__detail">
+        //                 <div>
+        //                     <button className="btn moment__bookmark">
+        //                         <BsBookmark />
+        //                     </button>
+        //                     {user?._id === creator._id && (
+        //                         <button
+        //                             className="btn moment__edit"
+        //                             onClick={(e) => {
+        //                                 e.stopPropagation();
+        //                                 // e.preventDefault();
+
+        //                                 setCurrentMomentId(moment._id);
+        //                                 history.replace("/moment");
+        //                             }}
+        //                         >
+        //                             <VscEdit />
+        //                         </button>
+        //                     )}
+        //                 </div>
+        //                 <h5 className="moment__creator">{creator.name}</h5>
+        //             </div>
+        //         </div>
+        //     </div>
+        // </article>
 
         // <article className="moment">
         //     <div className="moment__figures">

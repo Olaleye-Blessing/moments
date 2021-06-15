@@ -13,6 +13,9 @@
   --green-4: #6c766c;
   --red-1: #e10600ff;
   --red-2: #933e3b;
+  --blue-1: #4267b2;
+  --base-3: #0a66c2;
+  --base-4: #1da1f2;
   --font-heading: "Open Sans", sans-serif;
 }
 
@@ -270,23 +273,6 @@ nav.bg-color {
 .nav__lists-sub li:last-child .btn__link:hover {
   background-color: var();
   color: var();
-}
-
-.nav__lists-sub li .login {
-  padding-left: 1.2rem;
-  padding-right: 1.2rem;
-  color: var(--white-1);
-}
-
-.nav__lists-sub li .login:hover {
-  border: 0.2rem solid var();
-}
-
-.nav__lists-sub li .signup,
-.nav__lists-sub li .logout {
-  background-color: var(--green-1);
-  color: var(--white-1);
-  border-color: transparent;
 }
 
 .nav__link {
@@ -617,57 +603,16 @@ section[data-form="auth"] .form__home a {
   }
 }
 
-.moments {
-  padding-left: 2.1rem;
-  padding-right: 2.1rem;
-  margin-bottom: 4rem;
-  margin-bottom: 6rem;
+[data-content="moments"] {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  max-width: 70rem;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1;
+          flex: 1 1;
 }
 
-.moments__empty {
-  font-size: clamp(1rem, 50vw, 14rem);
-}
-
-.moments__empty, .moments__empty-link {
-  color: var(--white-1);
-  text-align: center;
-}
-
-.moments__empty-link {
-  font-size: clamp(1rem, 4vw, 4rem);
-}
-
-.moment {
-  max-width: 39rem;
-  position: relative;
-  cursor: -webkit-grab;
-  cursor: grab;
-}
-
-.moment__figure-cont {
-  border-radius: 1.5rem;
-  height: 20rem;
-  overflow: hidden;
-  position: relative;
-}
-
-.moment__figure {
-  width: 100%;
-  height: 100%;
-}
-
-.moment__figure-img {
-  -o-object-fit: cover;
-     object-fit: cover;
-  width: 100%;
-  height: 100%;
-}
-
-.moment__overlay {
-  padding: 1rem 0.9rem;
-}
-
-.moment__media {
+.moments__header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -681,95 +626,233 @@ section[data-form="auth"] .form__home a {
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
+  margin-bottom: 3rem;
 }
 
-.moment__type {
-  border-radius: 50%;
+.moments__tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.moments__tags li:not(:last-child) {
+  margin-right: 0.6rem;
+}
+
+.moment {
+  cursor: -webkit-grab;
+  cursor: grab;
+  cursor: pointer;
+  background-color: var(--black-2);
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.7rem;
+  margin-bottom: 3rem;
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+  -webkit-box-shadow: 0.1rem 0.1rem 1.4rem rgba(0, 0, 0, 0.3), -0.1rem -0.1rem 1.4rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0.1rem 0.1rem 1.4rem rgba(0, 0, 0, 0.3), -0.1rem -0.1rem 1.4rem rgba(0, 0, 0, 0.3);
+}
+
+.moment:hover {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.3), 0rem 0rem 0.4rem rgba(0, 0, 0, 0.3);
+          box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.3), 0rem 0rem 0.4rem rgba(0, 0, 0, 0.3);
+}
+
+.moment__figure {
+  width: 100%;
+  max-height: 25rem;
+  overflow: hidden;
+}
+
+.moment__figure img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.moment__detail {
+  margin-top: 1.5rem;
+  padding: 0 2rem 3rem 0.5rem;
+}
+
+.moment__detail-profileDate {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row wrap;
           flex-flow: row wrap;
-  padding: 0.8rem;
-  background-color: var(--black-4);
-  background-color: var(--green-4);
-  color: var(--white-1);
 }
 
-.moment__date {
-  font-size: 1.5rem;
-  color: var(--white-1);
+.moment__detail-profileDate > div {
+  margin-top: -0.5rem;
 }
 
-.moment__title {
+.moment__detail-other {
+  margin-left: 5.5rem;
+  margin-top: 1rem;
+}
+
+.moment__detail-other > div {
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.moment__creator-avatar {
+  margin-right: 0.7rem;
+}
+
+.moment__creator-name {
   color: var(--white-1);
-  margin-top: 1.1rem;
+  color: var(--green-1);
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+  font-weight: 900;
+}
+
+.moment__creator-name:hover {
+  color: var(--green-2);
+}
+
+.moment__createdAt {
+  color: var(--white-2);
+  font-size: 1.4rem;
+  letter-spacing: 0rem;
+  color: var(--green-4);
+}
+
+.moment__title::first-letter {
+  text-transform: uppercase;
+}
+
+.moment__message {
+  margin-top: 1rem;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
 }
 
-.moment__detail {
-  margin-top: 1rem;
+.moment__tags {
+  margin-top: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  gap: 1.5rem 0rem;
 }
 
-.moment__detail > div {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
-  text-align: right;
+.moment__tag:not(:last-child) {
+  margin-right: 1rem;
 }
 
-.moment__detail button {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  font-size: 1.8rem;
-}
-
-.moment__bookmark {
+.moment__tag-link {
   color: var(--green-1);
+  padding: 0.2rem 0.6rem 0.3rem;
+  border-radius: 0.5rem;
+  background-color: var(--black-1);
+  background-color: var(--black-3);
 }
 
-.moment__edit {
-  margin-left: 1rem;
+.moment__tag-link:hover {
+  background-color: var(--black-3);
+  background-color: transparent;
+}
+
+.moment__actions, .moment__reactions {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.moment__actions li, .moment__reactions li {
+  margin-top: 1.5rem;
+  cursor: pointer;
+}
+
+.moment__actions li:not(:last-child), .moment__reactions li:not(:last-child) {
+  margin-right: 1.5rem;
+}
+
+.moment__reactions {
+  margin-right: auto;
+}
+
+.moment__reactions li {
+  background-color: var(--black-2);
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.7rem;
+  padding: 0.3rem 0.6rem;
+  border: none;
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+  font-size: 1.5rem;
+}
+
+.moment__reactions li > * {
+  -webkit-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+
+.moment__reactions li:hover {
+  background-color: var(--black-3);
+}
+
+.moment__reactions li:hover > * {
   color: var(--white-1);
 }
 
-.moment__edit:hover {
-  color: var(--white-2);
+.moment__reactions li:hover svg {
+  color: var(--white-4);
 }
 
-.moment__creator {
-  margin-top: -3rem;
-  color: var(--green-1);
+.moment__reactions li svg {
+  font-size: 1.6rem;
+  vertical-align: -0.2rem;
 }
 
-@media screen and (min-width: 569px) {
-  .moments {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: (minmax(30rem, 1fr))[auto-fit];
-        grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
-    -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
-        grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
-    gap: 3rem 4rem;
-  }
-}
-
-@media screen and (max-width: 569px) {
-  .moment {
-    margin: 3rem auto;
-  }
+.moment__reactions li span {
+  margin-left: 0.5rem;
+  color: var(--white-4);
 }
 
 [data-page="article"] {
@@ -1053,13 +1136,198 @@ section[data-form="auth"] .form__home a {
   }
 }
 
+[data-page="homepage"] {
+  padding: 0 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+[data-page="homepage"] aside {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 20rem;
+          flex: 1 0 20rem;
+  max-width: 25rem;
+  max-width: 27rem;
+}
+
+[data-page="homepage"] aside:first-child {
+  margin-right: 1rem;
+}
+
+[data-page="homepage"] aside:nth-child(3) {
+  margin-left: 1rem;
+}
+
+[data-page="homepage"] .moment__delete, [data-page="homepage"] .moment__bookmark, [data-page="homepage"] .moment__edit {
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+[data-page="homepage"] .moment__delete:hover {
+  color: var(--red-1);
+}
+
+[data-page="homepage"] .moment__bookmark:hover {
+  color: var(--green-1);
+}
+
+[data-page="homepage"] .moment__edit:hover {
+  color: var(--green-2);
+}
+
+[data-page="homepage"] .home__nav li {
+  margin-bottom: 2rem;
+}
+
+[data-page="homepage"] .home__nav-media {
+  margin-top: 5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+[data-page="homepage"] .home__nav-media li {
+  margin-bottom: 0;
+}
+
+[data-page="homepage"] .home__nav-media li:not(:last-child) {
+  margin-right: 1.3rem;
+}
+
+[data-page="homepage"] .home__nav-media a {
+  color: #fff;
+}
+
+[data-page="homepage"] .home__nav-auth {
+  background-color: var(--black-2);
+  padding: 0.4rem 0.9rem;
+  border-radius: 0.7rem;
+  margin-bottom: 3rem;
+  padding: 1.3rem 1.4rem 2rem;
+}
+
+[data-page="homepage"] .home__nav-auth ul {
+  margin-top: 2rem;
+}
+
+[data-page="homepage"] .home__nav-auth ul li {
+  display: inline-block;
+  margin-top: 1rem;
+}
+
+[data-page="homepage"] .home__nav-auth ul li:first-child {
+  margin-right: 3rem;
+}
+
+[data-page="homepage"] .home__nav-auth span {
+  color: var(--green-3);
+}
+
+[data-page="homepage"] .home__nav-tags {
+  margin-top: 5rem;
+}
+
+[data-page="homepage"] .home__nav .facebook:hover {
+  color: var(--blue-1);
+}
+
+[data-page="homepage"] .home__nav .twitter:hover {
+  color: var(--base-4);
+}
+
+[data-page="homepage"] .home__nav .github:hover {
+  color: var(--green-1);
+}
+
+[data-page="homepage"] .home__nav .linkedin:hover {
+  color: var(--base-3);
+}
+
+[data-page="homepage"] .nav__icon {
+  margin-right: 1rem;
+}
+
+@media screen and (max-width: 990px) {
+  [data-page="homepage"] aside:first-child {
+    all: unset;
+    -webkit-box-flex: 2;
+        -ms-flex: 2 1;
+            flex: 2 1;
+    min-width: 22rem;
+  }
+  [data-page="homepage"] aside:nth-child(3) {
+    display: none;
+  }
+  [data-page="homepage"] main {
+    -webkit-box-flex: 5;
+        -ms-flex: 5 1;
+            flex: 5 1;
+    margin-left: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 629px) {
+  [data-page="homepage"] aside:first-child {
+    display: none;
+  }
+}
+
 .width {
   width: 100%;
-  max-width: 100rem;
   margin-left: auto;
   margin-right: auto;
   padding-left: 2.1rem;
   padding-right: 2.1rem;
+  max-width: 141rem;
+}
+
+.signup,
+.logout {
+  background-color: var(--green-1);
+  color: var(--white-1);
+  border-color: transparent;
+}
+
+.signup:hover,
+.logout:hover {
+  background-color: transparent;
+  border-color: var(--white-2);
+}
+
+.login {
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
+  color: var(--white-1);
+}
+
+.login:hover {
+  border: 0.2rem solid var();
 }
 
 .like {
