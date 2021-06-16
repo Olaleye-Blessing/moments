@@ -804,6 +804,11 @@ section[data-form="auth"] .form__home a {
           flex-flow: row wrap;
 }
 
+.moment__actions .btn, .moment__reactions .btn {
+  color: var(--white-1);
+  font-size: 1.6rem;
+}
+
 .moment__actions li, .moment__reactions li {
   margin-top: 1.5rem;
   cursor: pointer;

@@ -47,6 +47,7 @@ export const updatePost = async (id, moment) => {
             headers: {
                 "Content-Type": "application/json;charset=utf-8",
             },
+            credentials: "include",
         });
         let res = await req.json();
         if (!(req.status >= 200 && req.status <= 299)) throw res;
@@ -63,6 +64,7 @@ export const deletePost = async (id) => {
     try {
         await fetch(`${baseUrl}/moments/${id}`, {
             method: "DELETE",
+            credentials: "include",
             // body: JSON.stringify(body),
             // headers: {
             //     "Content-Type": "application/json;charset=utf-8",

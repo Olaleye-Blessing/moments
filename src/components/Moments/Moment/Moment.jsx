@@ -10,10 +10,12 @@ import { useMomentContext } from "../../../context/MomentsContext";
 import humanDate from "../../../utilities/humanDate";
 import defaultImage from "./../../../data/images/blueFlower.jpg";
 import Avatar from "../../Avatar";
+import { deletePost } from "../../../reducer/fetchActions";
+import { actions } from "../../../reducer/actions";
 
 const Moment = ({ moment }) => {
-    // let { setCurrentMomentId, state } = useMomentContext();
-    let { state } = useMomentContext();
+    let { setCurrentMomentId, state, dispatch } = useMomentContext();
+    // let { state } = useMomentContext();
     let history = useHistory();
 
     let { user } = state;
@@ -53,7 +55,7 @@ const Moment = ({ moment }) => {
 
     let reactions = Number(likes) + Number(dislikes);
 
-    console.log(user, creator);
+    // console.log(user, creator);
     return (
         <article className="moment" tabIndex={0} onClick={showMomentDetail}>
             {/* {image ? (
@@ -108,17 +110,42 @@ const Moment = ({ moment }) => {
                         <ul className="moment__actions">
                             {user?._id === creator._id ? (
                                 <li>
-                                    <MdDelete className="moment__delete" />
+                                    <button
+                                        className="btn"
+                                        onClick={async (e) => {
+                                            e.stopPropagation();
+                                            dispatch({
+                                                type: actions.DELETE_MOMENT,
+                                                payload: moment._id,
+                                            });
+                                            await deletePost(moment._id);
+                                            history.replace("/");
+                                        }}
+                                    >
+                                        <MdDelete className="moment__delete" />
+                                    </button>
                                 </li>
                             ) : null}
                             {user?._id === creator._id && (
                                 <li>
-                                    <VscEdit className="moment__edit" />
+                                    <button
+                                        className="btn"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+
+                                            setCurrentMomentId(moment._id);
+                                            history.replace("/moment");
+                                        }}
+                                    >
+                                        <VscEdit className="moment__edit" />
+                                    </button>
                                 </li>
                             )}
-                            <li>
-                                <BsBookmark className="moment__bookmark" />
-                            </li>
+                            {/* <li>
+                                <button className="btn">
+                                    <BsBookmark className="moment__bookmark" />
+                                </button>
+                            </li> */}
                         </ul>
                     </div>
                 </div>

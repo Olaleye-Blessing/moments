@@ -62,6 +62,8 @@ const AddMoment = () => {
             let { moment } = await updatePost(currentMomentId, momentData);
             // console.log(moment);
             dispatch({ type: actions.UPDATE_MOMENT, payload: moment });
+            reset();
+            history.push("/");
         } else {
             try {
                 // console.log(momentData);
