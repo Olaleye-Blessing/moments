@@ -550,6 +550,8 @@ nav.bg-color {
   position: absolute;
   top: 0;
   right: 2.8rem;
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
   font-size: 1.2rem;
   background-color: var(--white-4);
   border-radius: 0.3rem;
@@ -564,6 +566,9 @@ nav.bg-color {
   transition: all 0.3s linear;
   margin-bottom: 0.1rem;
   text-transform: capitalize;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   color: var(--green-3);
   color: var(--white-1);
   font-weight: bold;
