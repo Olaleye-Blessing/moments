@@ -1,14 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import Moment from "./Moment/Moment";
 
 const Moments = ({ moments }) => {
+    // let location = useLocation();
+    // console.log(location);
     const [periods, setPeriods] = useState([
         { text: "latest", active: true },
         { text: "week", active: false },
         { text: "month", active: false },
         { text: "year", active: false },
     ]);
+
     return (
         <>
             <header className="moments__header">
@@ -17,25 +20,20 @@ const Moments = ({ moments }) => {
                     {periods.map((period) => {
                         let { text, active } = period;
                         return (
-                            <li>
-                                <Link to={`/text`} className={`btn nav__link`}>
+                            <li key={text}>
+                                {/* <Link to={`/text`} className={`btn nav__link`}>
                                     {text}
-                                </Link>
+                                </Link> */}
+                                <NavLink
+                                    to={`/`}
+                                    className={`btn nav__link`}
+                                    activeClassName={active && "white-link"}
+                                >
+                                    {text}
+                                </NavLink>
                             </li>
                         );
                     })}
-                    {/* <li>
-                        <Link to="/:latest">Latest</Link>
-                    </li>
-                    <li>
-                        <Link to="/:latest">Latest</Link>
-                    </li>
-                    <li>
-                        <Link to="/:latest">Latest</Link>
-                    </li>
-                    <li>
-                        <Link to="/:latest">Latest</Link>
-                    </li> */}
                 </ul>
             </header>
             <section className="moments">

@@ -55,7 +55,7 @@ const Moment = ({ moment }) => {
 
     let reactions = Number(likes) + Number(dislikes);
 
-    // console.log(user, creator);
+    // console.log(creator);
     return (
         <article className="moment" tabIndex={0} onClick={showMomentDetail}>
             {/* {image ? (
@@ -70,9 +70,23 @@ const Moment = ({ moment }) => {
                         sub_class="moment__creator-avatar"
                     />
                     <div>
-                        <Link to="/home" className="moment__creator-name">
+                        {/* <Link
+                            to={`/profile/${creator._id}`}
+                            className="moment__creator-name"
+                        >
                             {name}
-                        </Link>
+                        </Link> */}
+                        <button
+                            type="button"
+                            className="btn moment__creator-name"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                console.log("clicked....");
+                                history.push(`/profile/${creator._id}`);
+                            }}
+                        >
+                            {name}
+                        </button>
                         <p className="moment__createdAt">
                             {humanDate(createdAt)}
                         </p>
@@ -84,12 +98,25 @@ const Moment = ({ moment }) => {
                     <ul className="moment__tags">
                         {tags.map((tag) => (
                             <li key={tag} className="moment__tag">
-                                <Link
+                                <button
+                                    type="button"
+                                    className="btn moment__tag-link"
+                                    style={{ fontSize: "16px" }}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        // history.push(`/moments/${_id}`);
+                                        history.push(`/moments/tags/${tag}`);
+                                        // history.push("/404");
+                                    }}
+                                >
+                                    {tag}
+                                </button>
+                                {/* <Link
                                     to={`/home`}
                                     className="btn moment__tag-link"
                                 >
                                     {tag}
-                                </Link>
+                                </Link> */}
                             </li>
                         ))}
                     </ul>

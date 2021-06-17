@@ -1349,6 +1349,162 @@ section[data-form="auth"] .form__home a {
   }
 }
 
+.error-page-cont {
+  background-size: 400%;
+  position: relative;
+  padding-top: 8rem;
+}
+
+#error-page {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#error-page .content {
+  max-width: 60rem;
+  text-align: center;
+}
+
+.content h2.header {
+  font-size: 18vw;
+  font-size: 14vw;
+  line-height: 1em;
+  position: relative;
+}
+
+.content h2.header:after {
+  position: absolute;
+  content: attr(data-text);
+  top: 0;
+  left: 0;
+  right: 0;
+  background: -webkit-repeating-linear-gradient(-45deg, #71b7e6, #69a6ce, #b98acc, #ee8176, #b98acc, #69a6ce, #9b59b6);
+  background-size: 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.25);
+  -webkit-animation: animate 10s ease-in-out infinite;
+          animation: animate 10s ease-in-out infinite;
+}
+
+@-webkit-keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes animate {
+  0% {
+    background-position: 0 0;
+  }
+  25% {
+    background-position: 100% 0;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.content h4 {
+  font-size: 1.5em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  color: var(--black-1);
+  font-size: 2em;
+  max-width: 60rem;
+  position: relative;
+}
+
+.content h4:after {
+  position: absolute;
+  content: attr(data-text);
+  top: 0;
+  left: 0;
+  right: 0;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.content p {
+  font-size: 1.2em;
+  color: var(--black-1);
+}
+
+.content .btns {
+  margin: 2.5rem 0;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.content .btns a {
+  display: inline-block;
+  margin: 0 10px;
+  margin: 0 1rem;
+  text-decoration: none;
+  border: 0.2rem solid var(--green-2);
+  color: var(--green-2);
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.content .btns a:hover {
+  color: var(--white-1);
+  background-color: var(--green-1);
+}
+
+.bigFlex {
+  padding: 0 3rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  background-color: red;
+}
+
 .width {
   width: 100%;
   margin-left: auto;
@@ -1439,4 +1595,12 @@ section[data-form="auth"] .form__home a {
 .disabled:hover, .disabled:focus, .disabled:active {
   color: var(--black-1);
   background-color: var(--white-4);
+}
+
+.white-link {
+  color: var(--white-1);
+}
+
+.white-link:hover {
+  color: var(--white-2);
 }

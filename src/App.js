@@ -8,6 +8,7 @@ import Signup from "./pages/Authentication/Signup";
 import ForgetPassword from "./pages/Authentication/ForgetPassword";
 import Moment from "./pages/Moment";
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 function App() {
     let { pathname } = useLocation();
@@ -25,7 +26,7 @@ function App() {
                 <Route path="/moment">
                     <AddMoment />
                 </Route>
-                <Route path="/moments/:id">
+                <Route path="/moments/:id" exact>
                     <Moment />
                 </Route>
                 <Route path="/auth/login">
@@ -39,6 +40,9 @@ function App() {
                 </Route>
                 <Route path="/profile/:id">
                     <Profile />
+                </Route>
+                <Route path="*">
+                    <NotFound />
                 </Route>
             </Switch>
         </>

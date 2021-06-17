@@ -58,15 +58,15 @@ const Moment = () => {
 
     tags = [...new Set([...tags])];
     return (
-        <>
-            <div>
-                <aside>reactions</aside>
-                <main>
-                    <article>moment</article>
-                </main>
-                <aside>creator profile</aside>
-            </div>
-        </>
+        // <>
+        <div className="bigFlex" data-page="moment">
+            <aside>reactions</aside>
+            <main>
+                <article>moment</article>
+            </main>
+            <aside>creator profile</aside>
+        </div>
+        // </>
         // <main data-page="article">
         //     <article className="article">
         //         {image && (
