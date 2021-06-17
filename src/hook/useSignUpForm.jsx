@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import { useMomentContext } from "../context/MomentsContext";
+import { actions } from "../reducer/actions";
+import { signup } from "../reducer/fetchActions";
+import { preventUnnecessaryKeys } from "../utilities/Form/preventUnnecessaryKeys";
+import { imagesToBase64 } from "../utilities/imageToBase64";
 
 const useSignUpForm = (validate) => {
     let history = useHistory();
+    let { dispatch, state } = useMomentContext();
 
     const [values, setValues] = useState({
         firstName: "",
@@ -20,8 +26,16 @@ const useSignUpForm = (validate) => {
         email: { msg: "", status: true },
         password: { msg: "", status: true },
         confirmPassword: { msg: "", status: true },
-        profilePic: { msg: "", status: true },
+        // profilePic: { msg: "", status: true },
     });
+
+    const [disabledSubmitBtn, setDisabledSubmitBtn] = useState(true);
+
+    useEffect(() => {
+        setDisabledSubmitBtn(
+            Object.keys(errors).some((field) => errors[field].status === true)
+        );
+    }, [errors]);
 
     const handleChange = (e) => {
         let { name, value } = e.target;
@@ -37,6 +51,13 @@ const useSignUpForm = (validate) => {
         });
     };
 
+    const handleImageChange = async (e) => {
+        let image = await imagesToBase64(e);
+        image = image[0];
+        // setSignUpData({ ...signUpData, profilePic: image });
+        setValues({ ...values, profilePic: image });
+    };
+
     const [touched, setTouched] = useState({
         firstName: false,
         lastName: false,
@@ -46,34 +67,47 @@ const useSignUpForm = (validate) => {
         profilePic: false,
     });
 
-    const handleKeyDown = (name) => {
+    const handleKeyDown = (e, name) => {
+        if (!preventUnnecessaryKeys(e)) return;
         setTouched({ ...touched, [name]: true });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // setErrors(validate(values));
-        console.log("submited");
-        alert("submited");
-        setValues({
-            firstName: "",
-            lastName: "",
-            email: "",
-            userName: "",
-            password: "",
-            confirmPassword: "",
-            country: "",
-        });
-        history.replace("/");
+        setDisabledSubmitBtn(true);
+        console.log("submitted....");
+
+        try {
+            let res = await signup(values);
+            // let res = await signup({ firstName: "" });
+            console.log(res);
+            if (res.status === "success") {
+                dispatch({ type: actions.AUTHENTICATION, payload: res.user });
+                history.replace("/");
+            }
+        } catch (error) {
+            console.log(error);
+            let message = {
+                show: true,
+                type: "invalid",
+                msg: `${error.message}.`,
+            };
+            if (error.code === 400) {
+                dispatch({ type: actions.ERROR, payload: message });
+            }
+            setDisabledSubmitBtn(false);
+        }
     };
 
     return {
         handleChange,
+        handleImageChange,
         values,
         errors,
         handleSubmit,
         touched,
         handleKeyDown,
+        disabledSubmitBtn,
     };
 };
 

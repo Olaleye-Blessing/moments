@@ -7,6 +7,7 @@
   --black-2: #101820ff;
   --black-3: #3333;
   --black-4: #0003;
+  --black-5: #fefffe0d;
   --green-1: #2bae66ff;
   --green-2: #33aa99;
   --green-3: #13f813;
@@ -207,16 +208,12 @@ nav.bg-color {
           flex: 1;
 }
 
-.nav__home:-webkit-any-link {
+.nav__home span:nth-child(2n) {
   color: var(--white-1);
 }
 
-.nav__home:-moz-any-link {
-  color: var(--white-1);
-}
-
-.nav__home:any-link {
-  color: var(--white-1);
+.nav__home span:nth-child(2n + 1) {
+  color: var(--green-1);
 }
 
 .nav__lists-main {
@@ -407,8 +404,6 @@ nav.bg-color {
   width: 100%;
   max-width: 60rem;
   border-radius: 1rem;
-  border: 0.1rem solid var(--green-3);
-  border: 0.1rem solid var(--white-1);
   -webkit-box-shadow: 0.2rem 0.2rem 1rem #0003, -0.2rem -0.2rem 1rem #0003;
           box-shadow: 0.2rem 0.2rem 1rem #0003, -0.2rem -0.2rem 1rem #0003;
   margin: 3rem auto 8rem;
@@ -468,6 +463,8 @@ nav.bg-color {
       -ms-flex-flow: column-reverse;
           flex-flow: column-reverse;
   margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  position: relative;
 }
 
 .form__input, .form__textarea {
@@ -478,14 +475,13 @@ nav.bg-color {
   font-family: inherit;
   font-size: 100%;
   padding: 1.4rem 1.5rem 1rem;
+  padding: 1rem 1.5rem;
   border-radius: 0.2rem;
   border: none;
-  border-bottom: 0.3rem solid transparent;
-  border-bottom: 0.1rem solid var(--green-2);
-  background-color: var(--green-4);
+  border-bottom: 0.1rem solid transparent;
+  background-color: var(--black-5);
   width: 90%;
   color: var(--white-1);
-  color: var(--green-3);
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -495,9 +491,6 @@ nav.bg-color {
   outline: none;
   -webkit-box-shadow: 0 1rem 2rem #0001;
           box-shadow: 0 1rem 2rem #0001;
-  border-bottom: 0.1rem solid var(--black-1);
-  border-bottom: 0.1rem solid var(--green-1);
-  border-bottom: 0.1rem solid var(--white-1);
 }
 
 .form__input::-webkit-input-placeholder, .form__textarea::-webkit-input-placeholder {
@@ -516,6 +509,54 @@ nav.bg-color {
   color: var(--white-1);
 }
 
+.form__password-errors {
+  margin-bottom: 3.5rem;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  font-size: 1.3rem;
+}
+
+.form__input-error {
+  display: block;
+  color: var(--red-1);
+  position: absolute;
+  bottom: -2.3rem;
+  left: 2.9rem;
+  font-size: 1.5rem;
+}
+
+.form__input-icon {
+  position: absolute;
+  bottom: -2rem;
+  right: 2.6rem;
+  font-size: 2rem;
+  font-size: 1.7rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.form__input-icon-error {
+  color: var(--red-1);
+}
+
+.form__input-icon-valid {
+  color: var(--green-1);
+}
+
+.form__input-required {
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  position: absolute;
+  top: 0;
+  right: 2.8rem;
+  font-size: 1.2rem;
+  background-color: var(--white-4);
+  border-radius: 0.3rem;
+  padding: 0.3rem 0.5rem;
+  padding: 0.1rem 0.5rem 0.3rem;
+}
+
 .form__label {
   font-size: 1.7rem;
   margin-left: 2.7rem;
@@ -525,6 +566,7 @@ nav.bg-color {
   margin-bottom: 0.1rem;
   text-transform: capitalize;
   color: var(--green-3);
+  color: var(--white-1);
   font-weight: bold;
 }
 
@@ -1363,4 +1405,34 @@ section[data-form="auth"] .form__home a {
 .share:hover,
 .comment:hover {
   color: var(--white-4);
+}
+
+.valid {
+  border-color: var(--green-3);
+}
+
+.invalid {
+  border-color: var(--red-1);
+}
+
+.toggle {
+  position: absolute;
+  color: var(--white-1);
+  font-size: 2rem;
+  top: 70%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  right: 3.5rem;
+  z-index: 0;
+}
+
+.disabled {
+  background-color: var(--white-4);
+  color: var(--black-1);
+  cursor: not-allowed;
+}
+
+.disabled:hover, .disabled:focus, .disabled:active {
+  color: var(--black-1);
+  background-color: var(--white-4);
 }

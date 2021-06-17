@@ -4,6 +4,7 @@ import Alert from "../../components/Alert";
 import FormButton from "../../components/Form/FormButton";
 import FormText from "../../components/Form/FormText";
 import HomeLogo from "../../components/HomeLogo";
+import ToggleButton from "../../components/ToggleButton";
 import { useMomentContext } from "../../context/MomentsContext";
 import { actions } from "../../reducer/actions";
 import { login } from "../../reducer/fetchActions";
@@ -23,8 +24,12 @@ const Login = () => {
         setLoginData({ ...loginData, [name]: value });
     };
 
+    const [showPswd, setShowPswd] = useState(false);
+    const [disableSubmitBtn, setDisableSubmitBtn] = useState(false);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setDisableSubmitBtn(true);
         try {
             let res = await login(loginData);
             if (res.status === "success") {
@@ -47,6 +52,7 @@ const Login = () => {
                 type: "invalid",
                 msg: `${error.message}.`,
             };
+            setDisableSubmitBtn(false);
             dispatch({ type: actions.ERROR, payload: message });
         }
     };
@@ -66,22 +72,31 @@ const Login = () => {
                     handleChange={handleChange}
                 />
                 <FormText
-                    type="password"
+                    type={showPswd ? "text" : "password"}
                     name="password"
                     value={loginData.password}
                     handleChange={handleChange}
-                />
+                >
+                    <ToggleButton
+                        onClick={() => setShowPswd((prev) => !prev)}
+                        showPswd={showPswd}
+                    />
+                </FormText>
                 <FormButton
                     text="login"
                     type="submit"
-                    classname="form__button-submit"
+                    // classname="form__button-submit"
+                    classname={`form__button-submit ${
+                        disableSubmitBtn ? "disabled" : ""
+                    }`}
+                    disabled={disableSubmitBtn}
                 />
             </form>
             <p className="form__other">
                 Don't have an account? <Link to="/auth/signup">Sign up</Link>
             </p>
             <p className="form__other">
-                <Link to="/forgotPassword">Forgot Password?</Link>
+                <Link to="/auth/forgotPassword">Forgot Password?</Link>
             </p>
         </section>
     );

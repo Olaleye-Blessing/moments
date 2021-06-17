@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Authentication/Login";
 import Signup from "./pages/Authentication/Signup";
+import ForgetPassword from "./pages/Authentication/ForgetPassword";
 import Moment from "./pages/Moment";
 import Profile from "./pages/Profile";
 
@@ -13,9 +14,10 @@ function App() {
 
     return (
         <>
-            {pathname !== "/auth/signup" && pathname !== "/auth/login" && (
-                <Navbar />
-            )}
+            {pathname !== "/auth/signup" &&
+                pathname !== "/auth/login" &&
+                pathname !== "/auth/forgotPassword" &&
+                pathname !== "/auth/resetPassword" && <Navbar />}
             <Switch>
                 <Route path="/" exact>
                     <Homepage />
@@ -31,6 +33,9 @@ function App() {
                 </Route>
                 <Route path="/auth/signup">
                     <Signup />
+                </Route>
+                <Route path="/auth/forgotPassword">
+                    <ForgetPassword />
                 </Route>
                 <Route path="/profile/:id">
                     <Profile />

@@ -1,6 +1,6 @@
 const FormFile = ({ name, handleChange }) => {
     return (
-        <div className="form__control">
+        <div className="form__control" style={{ marginTop: "7rem" }}>
             <input
                 type="file"
                 id={name}

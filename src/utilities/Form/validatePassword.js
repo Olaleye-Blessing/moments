@@ -8,7 +8,7 @@ let regex = {
 
 const validatePasswordErrors = (password) => {
     let errors = {
-        "length": password.length > 8,
+        "length": password.length >= 8,
         "uppercase": regex["uppercase"].test(password),
         "lowercase": regex["lowercase"].test(password),
         "digit": regex["digit"].test(password),
