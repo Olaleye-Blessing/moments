@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import {
     AiFillExclamationCircle,
     AiFillCheckCircle,
-    AiOutlineEye,
-    AiOutlineEyeInvisible,
+    // AiOutlineEye,
+    // AiOutlineEyeInvisible,
 } from "react-icons/ai";
 
 import Alert from "../../components/Alert";

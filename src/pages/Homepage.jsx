@@ -8,6 +8,7 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import { Link } from "react-router-dom";
 import HomeAsideProfile from "../components/HomeAside/HomeAsideProfile";
 import HomeAsideOthers from "../components/HomeAside/HomeAsideOthers";
+// import NotFound from "./NotFound";
 
 const Homepage = () => {
     let { state, dispatch } = useMomentContext();
@@ -43,21 +44,6 @@ const Homepage = () => {
 
     let { moments } = state;
 
-    // return moments.length < 1 && !status ? (
-    //     <LoadingIndicator />
-    // ) : moments.length < 1 && status ? (
-    //     <>
-    //         <div className="moments__empty">(^_^)b</div>
-    //         <div className="moments__empty-link">
-    //             no moments available. <Link to="/moment">create</Link> for
-    //             yourself and others
-    //         </div>
-    //     </>
-    // ) : (
-    //     <main>
-    //         <Moments moments={moments} />
-    //     </main>
-    // );
     return (
         <div data-page="homepage" className="width width-one">
             <aside>
@@ -68,21 +54,32 @@ const Homepage = () => {
                     <LoadingIndicator />
                 ) : moments.length < 1 && status ? (
                     <>
-                        <div className="moments__empty">(^_^)b</div>
-                        <div className="moments__empty-link">
-                            no moments available.{" "}
-                            <Link to="/moment">create</Link> for yourself and
-                            others
+                        <div className="error-page-cont">
+                            <div id="error-page">
+                                <div className="content">
+                                    <h2 className="header" data-text="(^_^)">
+                                        (^_^)
+                                    </h2>
+                                    <h4
+                                        style={{ marginTop: "20px" }}
+                                        data-text="😔😔😔😔"
+                                    >
+                                        😔😔😔😔
+                                    </h4>
+                                    <p>Sorry! There are no moments available</p>
+                                    <div className="btns">
+                                        <Link to="/moment">create moment</Link>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </>
                 ) : (
                     <Moments moments={moments} />
                 )}
             </main>
-            {/* <aside>trending news </aside> */}
             <aside>
                 <HomeAsideOthers />
-                {/* <HomeAsideProfile /> */}
             </aside>
         </div>
     );

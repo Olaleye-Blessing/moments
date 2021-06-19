@@ -8,7 +8,7 @@ import { imagesToBase64 } from "../utilities/imageToBase64";
 
 const useSignUpForm = (validate) => {
     let history = useHistory();
-    let { dispatch, state } = useMomentContext();
+    let { dispatch } = useMomentContext();
 
     const [values, setValues] = useState({
         firstName: "",

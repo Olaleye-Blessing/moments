@@ -1,10 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
 import { AiOutlineHome } from "react-icons/ai";
-import { BiUserPlus } from "react-icons/bi";
+// import { BiUserPlus } from "react-icons/bi";
 import { FaQuestion } from "react-icons/fa";
-import { BsInfoCircle, BsEyeFill, BsPerson } from "react-icons/bs";
+// import { BsInfoCircle, BsEyeFill, BsPerson } from "react-icons/bs";
+import { BsInfoCircle, BsEyeFill } from "react-icons/bs";
 import { useMomentContext } from "../../context/MomentsContext";
-import Avatar from "../Avatar";
+// import Avatar from "../Avatar";
 
 import { ImTwitter } from "react-icons/im";
 import { VscGithubInverted } from "react-icons/vsc";

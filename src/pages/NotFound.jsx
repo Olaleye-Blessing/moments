@@ -6,8 +6,8 @@ const NotFound = () => {
     return (
         <main className="error-page-cont">
             <div id="error-page">
-                <div class="content">
-                    <h2 class="header" data-text="404">
+                <div className="content">
+                    <h2 className="header" data-text="404">
                         404
                     </h2>
                     <h4 data-text="Opps! Page not found">
@@ -17,7 +17,7 @@ const NotFound = () => {
                         Sorry! The page you are looking for is not available
                         tonight!!
                     </p>
-                    <div class="btns">
+                    <div className="btns">
                         <Link to="/">Go back home</Link>
                     </div>
                 </div>

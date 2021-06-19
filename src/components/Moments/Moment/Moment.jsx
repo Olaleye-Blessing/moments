@@ -1,8 +1,8 @@
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 // import { BiLike, BiDislike } from "react-icons/bi";
 import { FaRegComment } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
-import { BsBookmark } from "react-icons/bs";
+// import { BsBookmark } from "react-icons/bs";
 // import { BiVideo } from "react-icons/bi";
 import { VscEdit, VscReactions } from "react-icons/vsc";
 
@@ -14,6 +14,7 @@ import { deletePost } from "../../../reducer/fetchActions";
 import { actions } from "../../../reducer/actions";
 
 const Moment = ({ moment }) => {
+    // console.log(moment);
     let { setCurrentMomentId, state, dispatch } = useMomentContext();
     // let { state } = useMomentContext();
     let history = useHistory();
@@ -29,6 +30,7 @@ const Moment = ({ moment }) => {
         message,
         likes,
         dislikes,
+        comments,
     } = moment;
     // console.log(moment);
     let { profilePic, name } = creator;
@@ -56,8 +58,23 @@ const Moment = ({ moment }) => {
     let reactions = Number(likes) + Number(dislikes);
 
     // console.log(creator);
+
+    const deleteMoment = async (e) => {
+        e.stopPropagation();
+        console.log("delete clicked");
+        dispatch({
+            type: actions.DELETE_MOMENT,
+            payload: moment._id,
+        });
+        try {
+            await deletePost(moment._id);
+        } catch (error) {
+            console.log(error);
+        }
+        // history.replace("/");
+    };
     return (
-        <article className="moment" tabIndex={0} onClick={showMomentDetail}>
+        <article className="moment box" tabIndex={0} onClick={showMomentDetail}>
             {/* {image ? (
                 <figure className="moment__figure">
                     <img src={image} alt="" className="moment__figure-img" />
@@ -130,8 +147,30 @@ const Moment = ({ moment }) => {
                                 </span>
                             </li>
                             <li>
-                                <FaRegComment />
-                                <span>22 comments</span>
+                                <button
+                                    className="btn"
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        history.push(
+                                            `/moments/${_id}/#comments`
+                                        );
+                                    }}
+                                >
+                                    <FaRegComment />
+                                    <span>
+                                        {comments.length}{" "}
+                                        {comments.length > 1
+                                            ? "comments"
+                                            : "comment"}
+                                    </span>
+                                </button>
+                                {/* <FaRegComment />
+                                <span>
+                                    {comments.length}{" "}
+                                    {comments.length > 1
+                                        ? "comments"
+                                        : "comment"}
+                                </span> */}
                             </li>
                         </ul>
                         <ul className="moment__actions">
@@ -139,15 +178,7 @@ const Moment = ({ moment }) => {
                                 <li>
                                     <button
                                         className="btn"
-                                        onClick={async (e) => {
-                                            e.stopPropagation();
-                                            dispatch({
-                                                type: actions.DELETE_MOMENT,
-                                                payload: moment._id,
-                                            });
-                                            await deletePost(moment._id);
-                                            history.replace("/");
-                                        }}
+                                        onClick={deleteMoment}
                                     >
                                         <MdDelete className="moment__delete" />
                                     </button>
