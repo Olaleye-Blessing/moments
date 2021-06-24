@@ -11,6 +11,7 @@ import { ImTwitter } from "react-icons/im";
 import { VscGithubInverted } from "react-icons/vsc";
 import { GrFacebook } from "react-icons/gr";
 import { SiLinkedin } from "react-icons/si";
+import { BsPerson } from "react-icons/bs";
 
 const HomeAsideProfile = () => {
     let { state } = useMomentContext();
@@ -30,6 +31,13 @@ const HomeAsideProfile = () => {
             link: "terms",
         },
     ];
+
+    if (user)
+        lists.splice(1, 0, {
+            text: "Profile",
+            icon: <BsPerson className="nav__icon" />,
+            link: `profile/${user._id}`,
+        });
 
     let socialmedia = [
         {

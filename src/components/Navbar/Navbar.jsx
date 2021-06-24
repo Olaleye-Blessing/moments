@@ -13,11 +13,15 @@ import { useMomentContext } from "../../context/MomentsContext";
 import { actions } from "../../reducer/actions";
 
 const Navbar = () => {
-    let { dispatch } = useMomentContext();
+    let { dispatch, state } = useMomentContext();
+    // console.log(useMomentContext().state.user);
     let history = useHistory();
-    const [user, setUser] = useState(
-        JSON.parse(localStorage.getItem("profile"))
-    );
+
+    // const [user, setUser] = useState(
+    //     JSON.parse(localStorage.getItem("profile"))
+    // );
+
+    let { user } = state;
 
     let links = [
         {
@@ -55,20 +59,21 @@ const Navbar = () => {
             document.removeEventListener("scroll", getCurrentScrollHeight);
     }, []);
 
-    useEffect(() => {
-        setUser(JSON.parse(localStorage.getItem("profile")));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    // useEffect(() => {
+    //     setUser(JSON.parse(localStorage.getItem("profile")));
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, []);
 
     // console.log(user);
     const logoutUser = async (e) => {
-        console.log("logging out");
+        // console.log("logging out");
         let res = await logout();
         if (res.status === "success") {
-            console.log("logged out...");
-            console.log(res);
+            // console.log("logged out...");
+            // console.log(res);
             dispatch({ type: actions.LOGOUT, payload: res });
-            history.go(0);
+            // history.go(0);
+            // history.replace("/");
         }
     };
 
