@@ -87,14 +87,15 @@ const useSignUpForm = (validate) => {
             }
         } catch (error) {
             console.log(error);
-            let message = {
-                show: true,
-                type: "invalid",
-                msg: `${error.message}.`,
-            };
-            if (error.code === 400) {
-                dispatch({ type: actions.ERROR, payload: message });
-            }
+            // let message = {
+            //     show: true,
+            //     type: "invalid",
+            //     msg: `${error.message}.`,
+            // };
+            // if (error.code === 400) {
+            // dispatch({ type: actions.ERROR, payload: message });
+            dispatch({ type: actions.ERROR, payload: error });
+            // }
             setDisabledSubmitBtn(false);
         }
     };

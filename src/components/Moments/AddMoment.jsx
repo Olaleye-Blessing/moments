@@ -9,7 +9,7 @@ import FormTextArea from "../Form/FormTextArea";
 // import FileBase from "react-file-base64";
 import { imagesToBase64 } from "../../utilities/imageToBase64";
 import { useMomentContext } from "../../context/MomentsContext";
-import { createPost, updatePost } from "../../reducer/fetchActions";
+import { createPost, updatePost, fetchData } from "../../reducer/fetchActions";
 import { actions } from "../../reducer/actions";
 import Alert from "../Alert";
 
@@ -66,13 +66,22 @@ const AddMoment = () => {
             history.push("/");
         } else {
             try {
+                console.log("using fetch data...");
+
                 // console.log(momentData);
                 // let result = await createPost(momentData);
                 // console.log(result);
 
                 let { moment } = await createPost(momentData);
+                // let { moment } = await fetchData(
+                //     ``,
+                //     "POST",
+                //     undefined,
+                //     momentData
+                // );
                 dispatch({ type: actions.CREATE_MOMENT, payload: moment });
                 reset();
+                console.log("data is back...");
                 history.replace("/");
             } catch (error) {
                 if (error.code === 401) {

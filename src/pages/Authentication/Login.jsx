@@ -47,13 +47,14 @@ const Login = () => {
             }
         } catch (error) {
             console.log(error);
-            let message = {
-                show: true,
-                type: "invalid",
-                msg: `${error.message}.`,
-            };
+            // let message = {
+            //     show: true,
+            //     type: "invalid",
+            //     msg: `${error.message}.`,
+            // };
             setDisableSubmitBtn(false);
-            dispatch({ type: actions.ERROR, payload: message });
+            // dispatch({ type: actions.ERROR, payload: message });
+            dispatch({ type: actions.ERROR, payload: error });
         }
     };
 

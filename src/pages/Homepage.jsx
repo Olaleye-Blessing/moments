@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useMomentContext } from "../context/MomentsContext";
 import { actions } from "../reducer/actions";
 import { fetchPosts } from "../reducer/fetchActions";
+// import { fetchData } from "../reducer/fetchActions";
 import Moments from "../components/Moments/Moments";
 import LoadingIndicator from "../components/LoadingIndicator";
 // import cryingGif from "./data/gifs/crying.gif";
@@ -22,6 +23,7 @@ const Homepage = () => {
         const fetchAllPosts = async () => {
             try {
                 let response = await fetchPosts(signal);
+                // let response = await fetchData(`/moments`, signal);
 
                 if (response) {
                     let { moments, status } = response;
