@@ -33,7 +33,6 @@ const Login = () => {
         try {
             let res = await login(loginData);
             if (res.status === "success") {
-                // console.log("yes");
                 dispatch({ type: actions.AUTHENTICATION, payload: res.user });
 
                 let message = {
@@ -46,14 +45,7 @@ const Login = () => {
                 history.replace("/");
             }
         } catch (error) {
-            // console.log(error);
-            // let message = {
-            //     show: true,
-            //     type: "invalid",
-            //     msg: `${error.message}.`,
-            // };
             setDisableSubmitBtn(false);
-            // dispatch({ type: actions.ERROR, payload: message });
             dispatch({ type: actions.ERROR, payload: error });
         }
     };
@@ -65,7 +57,7 @@ const Login = () => {
                 <HomeLogo />
             </h2>
             <form className="form" onSubmit={handleSubmit}>
-                <h2>Sign In To Your Account</h2>
+                <h2>Sign In</h2>
                 <FormText
                     type="email"
                     name="email"

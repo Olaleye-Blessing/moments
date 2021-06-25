@@ -75,27 +75,16 @@ const useSignUpForm = (validate) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setDisabledSubmitBtn(true);
-        console.log("submitted....");
 
         try {
             let res = await signup(values);
-            // let res = await signup({ firstName: "" });
             console.log(res);
             if (res.status === "success") {
                 dispatch({ type: actions.AUTHENTICATION, payload: res.user });
                 history.replace("/");
             }
         } catch (error) {
-            console.log(error);
-            // let message = {
-            //     show: true,
-            //     type: "invalid",
-            //     msg: `${error.message}.`,
-            // };
-            // if (error.code === 400) {
-            // dispatch({ type: actions.ERROR, payload: message });
             dispatch({ type: actions.ERROR, payload: error });
-            // }
             setDisabledSubmitBtn(false);
         }
     };
