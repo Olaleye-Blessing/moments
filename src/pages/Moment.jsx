@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
 // import { BsPerson } from "react-icons/bs";
 // import { BiLike, BiDislike } from "react-icons/bi";
 // import { FaRegComment } from "react-icons/fa";
@@ -21,7 +21,8 @@ const Moment = () => {
     let { state, dispatch } = useMomentContext();
     const [comment, setComment] = useState("");
     let { moments, user } = state;
-    // console.log(user);
+    console.log(user);
+    console.log(Boolean(user));
 
     const [moment, setMoment] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -160,32 +161,44 @@ const Moment = () => {
 
                     <section className="article__comments">
                         <h3 id="comments">Comments ({comments.length})</h3>
-                        <form
-                            className="article__form-comment"
-                            onSubmit={handleSubmit}
-                        >
+                        {user ? (
+                            <form
+                                className="article__form-comment"
+                                onSubmit={handleSubmit}
+                            >
+                                <div>
+                                    <Avatar
+                                        src={user.profilePic}
+                                        sub_class="moment__creator-avatar"
+                                    />
+                                    <FormTextArea
+                                        // name="comment"
+                                        // rows={22}
+                                        cols={50}
+                                        value={comment}
+                                        handleChange={(e) =>
+                                            setComment(e.target.value)
+                                        }
+                                        placeholder="write your comment..."
+                                    />
+                                </div>
+                                <FormButton
+                                    text="comment"
+                                    type="submit"
+                                    classname="form__button-submit"
+                                />
+                            </form>
+                        ) : (
                             <div>
-                                <Avatar
-                                    src={user.profilePic}
-                                    sub_class="moment__creator-avatar"
-                                />
-                                <FormTextArea
-                                    // name="comment"
-                                    // rows={22}
-                                    cols={50}
-                                    value={comment}
-                                    handleChange={(e) =>
-                                        setComment(e.target.value)
-                                    }
-                                    placeholder="write your comment..."
-                                />
+                                <Link
+                                    to="/auth/login"
+                                    className="btn nav__link"
+                                >
+                                    login
+                                </Link>{" "}
+                                to comment
                             </div>
-                            <FormButton
-                                text="comment"
-                                type="submit"
-                                classname="form__button-submit"
-                            />
-                        </form>
+                        )}
                     </section>
 
                     {comments.length > 0 && (

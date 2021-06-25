@@ -46,7 +46,7 @@ const Login = () => {
                 history.replace("/");
             }
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             // let message = {
             //     show: true,
             //     type: "invalid",

@@ -6,10 +6,9 @@ import FormButton from "../Form/FormButton";
 import FormFile from "../Form/FormFile";
 import FormText from "../Form/FormText";
 import FormTextArea from "../Form/FormTextArea";
-// import FileBase from "react-file-base64";
 import { imagesToBase64 } from "../../utilities/imageToBase64";
 import { useMomentContext } from "../../context/MomentsContext";
-import { createPost, updatePost, fetchData } from "../../reducer/fetchActions";
+import { createPost, updatePost } from "../../reducer/fetchActions";
 import { actions } from "../../reducer/actions";
 import Alert from "../Alert";
 
@@ -19,7 +18,6 @@ const AddMoment = () => {
     let { state, dispatch, currentMomentId, setCurrentMomentId } =
         useMomentContext();
     const [momentData, setMomentData] = useState({
-        // creator: "",
         title: "",
         message: "",
         tags: "",
@@ -60,37 +58,23 @@ const AddMoment = () => {
 
         if (currentMomentId) {
             let { moment } = await updatePost(currentMomentId, momentData);
-            // console.log(moment);
             dispatch({ type: actions.UPDATE_MOMENT, payload: moment });
             reset();
             history.push("/");
         } else {
             try {
-                console.log("using fetch data...");
-
-                // console.log(momentData);
-                // let result = await createPost(momentData);
-                // console.log(result);
-
                 let { moment } = await createPost(momentData);
-                // let { moment } = await fetchData(
-                //     ``,
-                //     "POST",
-                //     undefined,
-                //     momentData
-                // );
                 dispatch({ type: actions.CREATE_MOMENT, payload: moment });
                 reset();
-                console.log("data is back...");
                 history.replace("/");
             } catch (error) {
                 if (error.code === 401) {
-                    let message = {
-                        show: true,
-                        type: "invalid",
-                        msg: `${error.message}. Redirecting to login page in 5 secs`,
-                    };
-                    dispatch({ type: actions.ERROR, payload: message });
+                    // let message = {
+                    //     show: true,
+                    //     type: "invalid",
+                    //     msg: `${error.message}. Redirecting to login page in 5 secs`,
+                    // };
+                    dispatch({ type: actions.ERROR, payload: error });
 
                     setTimeout(() => {
                         history.replace("/auth/login");
