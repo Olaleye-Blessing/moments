@@ -7,7 +7,8 @@ import HomeLogo from "../../components/HomeLogo";
 import ToggleButton from "../../components/ToggleButton";
 import { useMomentContext } from "../../context/MomentsContext";
 import { actions } from "../../reducer/actions";
-import { login } from "../../reducer/fetchActions";
+import { login } from "../../reducer/fetchActions/auth";
+// import { login } from "../../reducer/fetchActions";
 
 const Login = () => {
     let { state, dispatch } = useMomentContext();

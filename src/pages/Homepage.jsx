@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useMomentContext } from "../context/MomentsContext";
 import { actions } from "../reducer/actions";
-import { fetchPosts } from "../reducer/fetchActions";
+// import { fetchPosts } from "../reducer/fetchActions";
 // import { fetchData } from "../reducer/fetchActions";
 import Moments from "../components/Moments/Moments";
 import LoadingIndicator from "../components/LoadingIndicator";
@@ -9,11 +9,14 @@ import LoadingIndicator from "../components/LoadingIndicator";
 import { Link } from "react-router-dom";
 import HomeAsideProfile from "../components/HomeAside/HomeAsideProfile";
 import HomeAsideOthers from "../components/HomeAside/HomeAsideOthers";
+import { fetchPosts } from "../reducer/fetchActions/moment";
 // import NotFound from "./NotFound";
+import Alert from "./../components/Alert";
 
 const Homepage = () => {
     let { state, dispatch } = useMomentContext();
     // const [moments, setMoments] = useState([]);
+    let { errorAlert } = state;
 
     const [status, setStatus] = useState(null);
     useEffect(() => {
@@ -34,6 +37,12 @@ const Homepage = () => {
                     }
                 }
             } catch (error) {
+                // let message = {
+                //     show: true,
+                //     type: "invalid",
+                //     msg: `${error.message}.`,
+                // };
+                dispatch({ type: actions.ERROR, payload: error });
                 console.log(error);
             }
         };
@@ -48,6 +57,7 @@ const Homepage = () => {
 
     return (
         <div data-page="homepage" className="width width-one">
+            {errorAlert.show && <Alert {...errorAlert} />}
             <aside>
                 <HomeAsideProfile />
             </aside>

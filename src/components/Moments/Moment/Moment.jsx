@@ -10,7 +10,8 @@ import { useMomentContext } from "../../../context/MomentsContext";
 import humanDate from "../../../utilities/humanDate";
 import defaultImage from "./../../../data/images/blueFlower.jpg";
 import Avatar from "../../Avatar";
-import { deletePost } from "../../../reducer/fetchActions";
+// import { deletePost } from "../../../reducer/fetchActions";
+import { deletePost } from "../../../reducer/fetchActions/moment";
 import { actions } from "../../../reducer/actions";
 
 const Moment = ({ moment }) => {
@@ -87,12 +88,6 @@ const Moment = ({ moment }) => {
                         sub_class="moment__creator-avatar"
                     />
                     <div>
-                        {/* <Link
-                            to={`/profile/${creator._id}`}
-                            className="moment__creator-name"
-                        >
-                            {name}
-                        </Link> */}
                         <button
                             type="button"
                             className="btn moment__creator-name"
@@ -121,19 +116,11 @@ const Moment = ({ moment }) => {
                                     style={{ fontSize: "16px" }}
                                     onClick={(e) => {
                                         e.stopPropagation();
-                                        // history.push(`/moments/${_id}`);
                                         history.push(`/moments/tags/${tag}`);
-                                        // history.push("/404");
                                     }}
                                 >
                                     {tag}
                                 </button>
-                                {/* <Link
-                                    to={`/home`}
-                                    className="btn moment__tag-link"
-                                >
-                                    {tag}
-                                </Link> */}
                             </li>
                         ))}
                     </ul>
@@ -209,134 +196,6 @@ const Moment = ({ moment }) => {
                 </div>
             </section>
         </article>
-        // <article
-        //     className="moment"
-        //     tabIndex={0}
-        //     onClick={showMomentDetail}
-        //     onKeyDown={(e) => {
-        //         if (e.code === "Space" || e.code === "Enter")
-        //             showMomentDetail(e);
-        //     }}
-        // >
-        //     <div className="moment__figure-cont">
-        //         <figure className="moment__figure">
-        //             <img src={image} alt="" className="moment__figure-img" />
-        //         </figure>
-        //         <div className="overlay moment__overlay">
-        //             <div className="moment__media">
-        //                 <div className="moment__type">
-        //                     <BiVideo />
-        //                 </div>
-        //                 <div className="moment__date">
-        //                     {humanDate(createdAt)}
-        //                 </div>
-        //             </div>
-        //             <h3 className="moment__title" title={title}>
-        //                 {title}
-        //             </h3>
-        //             <div className="moment__detail">
-        //                 <div>
-        //                     <button className="btn moment__bookmark">
-        //                         <BsBookmark />
-        //                     </button>
-        //                     {user?._id === creator._id && (
-        //                         <button
-        //                             className="btn moment__edit"
-        //                             onClick={(e) => {
-        //                                 e.stopPropagation();
-        //                                 // e.preventDefault();
-
-        //                                 setCurrentMomentId(moment._id);
-        //                                 history.replace("/moment");
-        //                             }}
-        //                         >
-        //                             <VscEdit />
-        //                         </button>
-        //                     )}
-        //                 </div>
-        //                 <h5 className="moment__creator">{creator.name}</h5>
-        //             </div>
-        //         </div>
-        //     </div>
-        // </article>
-
-        // <article className="moment">
-        //     <div className="moment__figures">
-        //         <figure className="moment__figure">
-        //             <img
-        //                 src={image}
-        //                 alt={title}
-        //                 className="moment__figure-img"
-        //             />
-        //         </figure>
-        //         <div className="overlay">
-        //             <button
-        //                 className="btn moment__edit"
-        //                 onClick={() => {
-        //                     setCurrentMomentId(moment._id);
-        //                     history.replace("/moment");
-        //                 }}
-        //             >
-        //                 <HiDotsHorizontal />
-        //             </button>
-        //         </div>
-        //     </div>
-        //     <section className="moment__details">
-        //         <div className="moment__detail">
-        //             <div className="avatar moment__avatar">
-        //                 <Avatar src={mjImg} />
-        //                 <h4 className="avatar__name moment__name">{creator}</h4>
-        //             </div>
-        //             <p className="moment__seconds">{formattedTime}</p>
-        //         </div>
-        //         <h3 className="moment__title">{title}</h3>
-        //         {message.length > 190 ? (
-        //             <p className="moment__message">
-        //                 {message.slice(0, 190)} ...
-        //                 <Link to="/">read more</Link>{" "}
-        //             </p>
-        //         ) : (
-        //             <p className="moment__message">{message}</p>
-        //         )}
-        //         <div className="moment__tags">
-        //             {tags[0]
-        //                 ? tags.map((tag, i) => (
-        //                       <span key={i}>{`#${tag} `}</span>
-        //                   ))
-        //                 : null}
-        //         </div>
-        //         <p className="moment__date">{humanDate(createdAt)}</p>
-        //         <div className="moment__reactions">
-        //             <button className="moment__reactions-icons btn">
-        //                 <FcLike className="moment__reactions-icon reactions-like" />
-        //                 <span className="moment__reaction-text">{likes}</span>
-        //             </button>
-        //             <button className="moment__reactions-icons btn">
-        //                 <FcDislike className="moment__reactions-icon reactions-dislike" />
-        //                 <span className="moment__reaction-text">
-        //                     {dislikes || 0}
-        //                 </span>
-        //             </button>
-        //             <button className="moment__reactions-icons btn">
-        //                 <FaRegComment className="moment__reactions-icon reactions-comment" />
-        //                 <span className="moment__reaction-text">2</span>
-        //             </button>
-        //             <button
-        //                 className="moment__reactions-icons btn"
-        //                 onClick={async () => {
-        //                     dispatch({
-        //                         type: actions.DELETE_MOMENT,
-        //                         payload: moment._id,
-        //                     });
-        //                     await deletePost(moment._id);
-        //                     history.go(0);
-        //                 }}
-        //             >
-        //                 <MdDelete className="moment__reactions-icon reactions-delete" />
-        //             </button>
-        //         </div>
-        //     </section>
-        // </article>
     );
 };
 

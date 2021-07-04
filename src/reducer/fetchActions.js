@@ -25,40 +25,17 @@ export const fetchData = async (
         if (!(req.status >= 200 && req.status <= 299)) throw res;
         return res;
     } catch (error) {
+        console.log(error);
+        console.info({ name: error.name });
         if (error.name !== "AbortError") {
             let message = {
                 show: true,
                 type: "invalid",
                 msg: `${error.message}.`,
             };
+            if (error.type === "fail")
+                message.msg = `Please check your internt connection. Come back later if error persist!`;
             throw message;
         }
     }
 };
-
-export const fetchPosts = async (signal) =>
-    await fetchData(`/moments`, "GET", signal);
-
-export const createPost = async (moment) =>
-    await fetchData(`/moments`, "POST", undefined, moment);
-
-export const updatePost = async (id, moment) => {
-    let body = { _id: id, ...moment };
-    return await fetchData(`/moments/${id}`, "PATCH", undefined, body);
-};
-
-export const deletePost = async (id) => {
-    await fetchData(`/moments/${id}`, "DELETE", undefined, undefined);
-};
-
-export const signup = async (data) =>
-    await fetchData(`/auth/signup`, "POST", undefined, data);
-
-export const login = async (data) =>
-    await fetchData(`/auth/login`, "POST", undefined, data);
-
-export const logout = async () =>
-    await fetchData(`/auth/logout`, "GET", undefined, undefined);
-
-export const momentDetails = async (id, signal) =>
-    await fetchData(`/moments/${id}`, "GET", signal, undefined);

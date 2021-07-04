@@ -8,12 +8,13 @@ import { useHistory, useParams, Link } from "react-router-dom";
 
 import LoadingIndicator from "../components/LoadingIndicator";
 import { useMomentContext } from "../context/MomentsContext";
-import { momentDetails } from "../reducer/fetchActions";
+// import { momentDetails } from "../reducer/fetchActions";
 import Avatar from "../components/Avatar";
 import FormTextArea from "../components/Form/FormTextArea";
 import FormButton from "./../components/Form/FormButton";
 import { createComment } from "../reducer/fetchActions/comment";
 import { actions } from "../reducer/actions";
+import { momentDetails } from "../reducer/fetchActions/moment";
 
 const Moment = () => {
     let history = useHistory();

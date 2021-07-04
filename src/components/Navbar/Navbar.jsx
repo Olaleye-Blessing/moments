@@ -1,25 +1,19 @@
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { IoMdNotifications } from "react-icons/io";
 import { AiOutlinePlus } from "react-icons/ai";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { BsPerson } from "react-icons/bs";
 
 import HomeLogo from "../HomeLogo";
 import Avatar from "../Avatar";
 import mjImg from "./../../data/images/mj1.jpg";
-import { logout } from "../../reducer/fetchActions";
 import { useMomentContext } from "../../context/MomentsContext";
 import { actions } from "../../reducer/actions";
+import { logout } from "../../reducer/fetchActions/auth";
 
 const Navbar = () => {
     let { dispatch, state } = useMomentContext();
-    // console.log(useMomentContext().state.user);
-    let history = useHistory();
-
-    // const [user, setUser] = useState(
-    //     JSON.parse(localStorage.getItem("profile"))
-    // );
 
     let { user } = state;
 
@@ -43,7 +37,6 @@ const Navbar = () => {
     const navRef = useRef(null);
 
     const getCurrentScrollHeight = () => {
-        // console.log(navRef.current);
         if (navRef.current) {
             let currentWindowScrollHeigth = window.pageYOffset;
             currentWindowScrollHeigth > 20
@@ -59,25 +52,12 @@ const Navbar = () => {
             document.removeEventListener("scroll", getCurrentScrollHeight);
     }, []);
 
-    // useEffect(() => {
-    //     setUser(JSON.parse(localStorage.getItem("profile")));
-    //     // eslint-disable-next-line react-hooks/exhaustive-deps
-    // }, []);
-
-    // console.log(user);
     const logoutUser = async (e) => {
-        // console.log("logging out");
         let res = await logout();
         if (res.status === "success") {
-            // console.log("logged out...");
-            // console.log(res);
             dispatch({ type: actions.LOGOUT, payload: res });
-            // history.go(0);
-            // history.replace("/");
         }
     };
-
-    // console.log(user);
 
     return (
         <nav className="nav" ref={navRef}>
@@ -103,14 +83,10 @@ const Navbar = () => {
                     {user ? (
                         <>
                             <li>
-                                {/* <button className="btn btn__avatar">
-                                    <Avatar src={mjImg} />
-                                </button> */}
                                 <NavLink
                                     to={`/profile/${user._id}`}
                                     className="btn btn__avatar"
                                 >
-                                    {/* <Avatar src={user?.profilePic || mjImg} /> */}
                                     {user.profilePic ? (
                                         <Avatar
                                             src={user?.profilePic || mjImg}
@@ -123,9 +99,6 @@ const Navbar = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                {/* <NavLink to="/logout" className="btn btn__link">
-                                    logout
-                                </NavLink> */}
                                 <button
                                     className="btn btn__link btn-logout logout"
                                     onClick={logoutUser}

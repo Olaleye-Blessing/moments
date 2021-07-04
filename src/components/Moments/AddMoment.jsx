@@ -8,9 +8,9 @@ import FormText from "../Form/FormText";
 import FormTextArea from "../Form/FormTextArea";
 import { imagesToBase64 } from "../../utilities/imageToBase64";
 import { useMomentContext } from "../../context/MomentsContext";
-import { createPost, updatePost } from "../../reducer/fetchActions";
 import { actions } from "../../reducer/actions";
 import Alert from "../Alert";
+import { createPost, updatePost } from "../../reducer/fetchActions/moment";
 
 const AddMoment = () => {
     let history = useHistory();
@@ -69,11 +69,6 @@ const AddMoment = () => {
                 history.replace("/");
             } catch (error) {
                 if (error.code === 401) {
-                    // let message = {
-                    //     show: true,
-                    //     type: "invalid",
-                    //     msg: `${error.message}. Redirecting to login page in 5 secs`,
-                    // };
                     dispatch({ type: actions.ERROR, payload: error });
 
                     setTimeout(() => {
@@ -87,7 +82,6 @@ const AddMoment = () => {
     const reset = () => {
         setCurrentMomentId(null);
         setMomentData({
-            // creator: "",
             title: "",
             message: "",
             tags: "",
@@ -95,11 +89,8 @@ const AddMoment = () => {
         });
     };
 
-    // console.log({ ...state });
     let { errorAlert } = state;
-    // console.log(errorAlert);
 
-    // console.log(currentMomentId);
     return (
         <main className="form__main">
             {errorAlert.show && <Alert {...errorAlert} />}
@@ -115,11 +106,6 @@ const AddMoment = () => {
                 <h2 className="form__head">
                     {moment ? "Update" : "Create"} Your Moment
                 </h2>
-                {/* <FormText
-                    name="creator"
-                    value={momentData.creator}
-                    handleChange={handleChange}
-                /> */}
                 <FormText
                     name="title"
                     value={momentData.title}
@@ -134,7 +120,6 @@ const AddMoment = () => {
                     name="tags"
                     value={momentData.tags}
                     handleChange={handleChange}
-                    // placeholder="-- seperate tags with comma(,)"
                     placeholder="tag1 tag2 tag3..."
                 />
                 <FormFile name="image" handleChange={handleImageChange} />

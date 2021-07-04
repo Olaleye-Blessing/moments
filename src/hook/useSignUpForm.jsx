@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { useMomentContext } from "../context/MomentsContext";
 import { actions } from "../reducer/actions";
-import { signup } from "../reducer/fetchActions";
+import { signup } from "../reducer/fetchActions/auth";
+// import { signup } from "../reducer/fetchActions";
 import { preventUnnecessaryKeys } from "../utilities/Form/preventUnnecessaryKeys";
 import { imagesToBase64 } from "../utilities/imageToBase64";
 
